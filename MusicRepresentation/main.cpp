@@ -64,37 +64,84 @@
  It works dynamically (e.g., only at runtime)
  http://www.cplusplus.com/reference/typeinfo/type_info/
  
+ Problem: this (likely) only returns label of actual class, but cannot be used to check type of superclasses.
+ 
+ Strasheela core approach: def bool member functions for type checking (isScoreObject etc.), but that needs some top-level class to define all those checking functions (all returning false). So, this approach cannot be extended.
+ 
+ Strasheela extensions approach: add unforgable datum to every class (Oz name) and check for that:
+ 
+ fun {IsInterval X}
+    {Score.isScoreObject X} andthen {HasFeature X IntervalType}
+ end
+ 
  */
 
 
 #include <iostream>
 #include <vector>
 #include <map>
-#include "boost/variant.hpp"
-
+#include <boost/variant.hpp>
+#include <boost/lexical_cast.hpp>
 
 using namespace std;
 
 
-/* Workaround to allow for arguments of different types for argument maps. Downside: all static typing (error checking etc.) is lost. Also, I always need to check with type is actually contained, before anything can actually be done with that data.
- */
-// TODO: What I actually want here is a super class for both int and string, so that both types are allowed.
-// union types are intended for saving memory, by allowing different types at times to use the same data slot -- I actually want to do something else.
-// Possible alternative: Boost.Variant, http://www.boost.org/doc/libs/1_55_0/doc/html/variant.html
-//union arg {
-//    string s; // union cannot wrap a string?
-//    int i;
-//};
+/*******************************************************************************************************/
+//
+// Defining args typ for accessing optional and named arguments for constructors of ScoreObject and subclasses.
+//
+/*******************************************************************************************************/
 
 // typedef boost::variant<int,string> arg;
-
-/** Shorthand type for argument maps for score object initialisation. Conveniently create argument map like
- * init(args {{"arg1", 42}, {"arg2", "test"}})
+/** Shorthand type for argument maps for score object initialisation, which allow for optional and named arguments for constructors of ScoreObject and subclasses. Conveniently create argument map for constructors like
+ 
+    SomeScoreObjectClass x = {args {{"arg1", 42}, {"arg2", "test"}}}
  */
 // boost::variant doc: http://www.boost.org/doc/libs/1_55_0/doc/html/variant.html
 typedef map<string, boost::variant<int,string>> args;
 
+/** Defines compile-time checked accessors for every arg type (i.e. the values in the map type called args).
+ */
+class getStringArg : public boost::static_visitor<string> {
+public:
+    string operator()(string& str) const {
+        return str;
+    }
+    string operator()(int & i) const {
+        throw invalid_argument{"Not a string: " + boost::lexical_cast<std::string>(i)};
+    }
+};
+class getIntArg : public boost::static_visitor<int> {
+public:
+    int operator()(string& str) const {
+        throw invalid_argument{"Not a string: " + str};
+    }
+    int operator()(int & i) const {
+        return i;
+    }
+};
 
+
+/*******************************************************************************************************/
+//
+//Aux functions
+//
+/*******************************************************************************************************/
+
+/** Returns a copy of args map as, reduced by the keys in keys
+ */
+args reduceArgsBy(args as, vector<string> keys) {
+    for(auto key: keys) {
+        as.erase(key);
+    }
+    return as;
+}
+
+/*******************************************************************************************************/
+//
+// Music representation class hierarchy
+//
+/*******************************************************************************************************/
 
 /* Skipped Strasheela classes
  
@@ -108,16 +155,19 @@ typedef map<string, boost::variant<int,string>> args;
   */
 class ScoreObject {
 //    int id;  // Perhaps I need id later again...
+    // !! TODO: does class destructor explicitly need to delete any internal vector?
     vector<string> info;
     
 public:
-    /** [constructor with map argument for optional/named arguments] The argument info is a string of arbitrary user information for this score object.
+    /** [constructor with map argument for optional/named arguments] 
+        Args:
+        string info: arbitrary user information for this score object (additional infos can be added with nmember function addInfo)
      */
+    // TODO: handle argument could be added later: arg is *ScoreObject, which is bound in constructor to *this
     ScoreObject(args as) {
         // process arg info
         if (as.count("info")){
-            // TODO: throw invalid_argument in case "info" value is not string
-            info.push_back(boost::get<string>(as.at("info")));
+            info.push_back(boost::apply_visitor(getStringArg(), as.at("info")));
             as.erase("info");
         }
         // raise exception if there are any remaining args
@@ -125,17 +175,23 @@ public:
             throw invalid_argument{"ScoreObject::ScoreObject(args as)" + x.first};
     };
     
-    vector<string> getInfo (void) { return info; }
+    /** Returns vectors of all info strings stored. */
+    vector<string> getInfo(void) { return info; }
+
     /** [destructive method] Adds myInfo to vector of stored infos. */
     void addInfo(string myInfo) { info.push_back(myInfo); }
+
     /** Returns bool whether internal vector of info strings contains myInfo. */
     bool hasThisInfo(string myInfo) {
         return any_of(info.begin(), info.end(), [&](string s){return s.compare(myInfo) == 0;});
     }
-};
+    
+    // !! TODO -- many member functions still missing -- see Strasheela source
+    
+ };
 
 
-/* // uncompilable/uncompleted definitions are wrapped in comments
+/* // TODO: uncompleted definitions, wrapped in comments
 
 class TimeMixin {
     <#instance variables#>
@@ -152,14 +208,61 @@ public:
     <#member functions#>
 };
 
+ */
+
+
+/** [semi abstract class] Musical parameters are the basic magnitudes in a music representation; examples are the parameters duration, amplitude and pitch, which add information to a note. A parameter is represented by an own class (i.e. not just as a instance variables of score items, as in most other composition environments) to allow the expression of additional information on the parameter besides the actual parameter value. For instance, a single numeric value for a pitch is ambitious, it could express a frequency, a MIDI-keynumber, MIDI-cents, a scale degree etc. Therefore, a parameter allows to specify the unit of measurement explicitly. The unit is mainly used when exporting the score.
+ Also, due to bidirectional links between nested score objects, all information stored in a score can be accessed from a parameter object (using member function getItem).
+ Users should ensure that parameters have corresponding units when constraining the relation between multiple parameters.
+ For efficiency, the parameter value is limited to integer values and integer variable (planned: float variables). However, due to the flexibility of the unit, these values can be mapped to arbitrary other data (e.g. midicent integer to frequency float).
+ */
 class Parameter : public ScoreObject {
-    <#instance variables#>
+    // The parameter attributes value and 'unit' specify the parameter setting and the unit of measurement. The attribute item points to the score item the parameter belongs to.
+    // !! TMP comment
+//    Item item;
+    int value;
+    string unit;
+    // heuristics  // for internal bookkeeping of heuristic constraints
     
 public:
-    <#member functions#>
+    /** Args: 
+        int value: the parameter value
+        string unit: parameter unit of measurement
+     */
+    Parameter(args as) : ScoreObject{ reduceArgsBy(as, vector<string> {"value", "unit"}) } {
+        // process args
+        if (as.count("value")){
+            value = boost::apply_visitor(getIntArg(), as.at("value"));
+        } else {
+            value = 0; // default
+        }
+        if (as.count("unit")){
+            unit = boost::apply_visitor(getStringArg(), as.at("unit"));
+        } else {
+            unit = ""; // default
+        }
+    };
+    
+    int getValue(void) { return value; }
+    string getUnit(void) { return unit; }
+    
+    /* // TODO: missing functions
+     
+     getItem
+     initFD
+     initFS
+     isDet
+     
+     ?? getHeuristics
+     ?? addHeuristic
+     
+     ?? getInitInfo
+     ?? toPPrintRecord
+     
+     */
+
 };
- 
- */
+
 
 /* Skipped Strasheela classes
  
@@ -318,12 +421,16 @@ int main(int argc, const char * argv[])
 //        std::cout << x.first << ": " << x.second << '\n';
     
 //    ScoreObject(args {{"info", "bla"}});
-    ScoreObject scoreObject = {args {{"info", 3}}}; // working
+//    ScoreObject scoreObject = {args {{"info", "bla"}}}; // working
+//    ScoreObject scoreObject = {args {{"info", 42}}}; // throws as expected
 //    ScoreObject scoreObject = {args {{"info", "bla"}, {"buggy_arg", "value"}}}; // successfully throws exception
-    scoreObject.addInfo("test 2");
+//    scoreObject.addInfo("test 2");
+    
+    Parameter p = {args {{"info", "bla"}, {"value", 42}}};
 
-    // insert code here...
-    cout << "hasThisInfo? " << scoreObject.hasThisInfo("bla") << "\n";
+//    cout << "hasThisInfo? " << scoreObject.hasThisInfo("bla") << "\n";
+    cout << "hasThisInfo? " << p.hasThisInfo("bla") << "\n";
+    cout << "value:  " << p.getValue() << "\n";
     return 0;
 }
 

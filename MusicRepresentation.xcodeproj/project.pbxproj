@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		E59140571865ED7700F29EF2 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E59140561865ED7700F29EF2 /* main.cpp */; };
 		E59140591865ED7700F29EF2 /* MusicRepresentation.1 in CopyFiles */ = {isa = PBXBuildFile; fileRef = E59140581865ED7700F29EF2 /* MusicRepresentation.1 */; };
+		E5E03670186B6BE8007A2C63 /* ScoreCore.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E5E0366E186B6BE8007A2C63 /* ScoreCore.cpp */; };
+		E5E03673186B8F3A007A2C63 /* ScoreMapping.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E5E03671186B8F3A007A2C63 /* ScoreMapping.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -28,6 +30,10 @@
 		E59140531865ED7700F29EF2 /* MusicRepresentation */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = MusicRepresentation; sourceTree = BUILT_PRODUCTS_DIR; };
 		E59140561865ED7700F29EF2 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		E59140581865ED7700F29EF2 /* MusicRepresentation.1 */ = {isa = PBXFileReference; lastKnownFileType = text.man; path = MusicRepresentation.1; sourceTree = "<group>"; };
+		E5E0366E186B6BE8007A2C63 /* ScoreCore.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ScoreCore.cpp; sourceTree = "<group>"; };
+		E5E0366F186B6BE8007A2C63 /* ScoreCore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScoreCore.h; sourceTree = "<group>"; };
+		E5E03671186B8F3A007A2C63 /* ScoreMapping.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ScoreMapping.cpp; sourceTree = "<group>"; };
+		E5E03672186B8F3A007A2C63 /* ScoreMapping.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScoreMapping.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,6 +66,10 @@
 		E59140551865ED7700F29EF2 /* MusicRepresentation */ = {
 			isa = PBXGroup;
 			children = (
+				E5E0366E186B6BE8007A2C63 /* ScoreCore.cpp */,
+				E5E0366F186B6BE8007A2C63 /* ScoreCore.h */,
+				E5E03671186B8F3A007A2C63 /* ScoreMapping.cpp */,
+				E5E03672186B8F3A007A2C63 /* ScoreMapping.h */,
 				E59140561865ED7700F29EF2 /* main.cpp */,
 				E59140581865ED7700F29EF2 /* MusicRepresentation.1 */,
 			);
@@ -118,6 +128,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				E59140571865ED7700F29EF2 /* main.cpp in Sources */,
+				E5E03670186B6BE8007A2C63 /* ScoreCore.cpp in Sources */,
+				E5E03673186B8F3A007A2C63 /* ScoreMapping.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -237,6 +249,7 @@
 				E591405E1865ED7700F29EF2 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

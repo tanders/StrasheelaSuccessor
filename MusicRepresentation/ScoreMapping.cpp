@@ -9,6 +9,8 @@
 #include <vector>
 #include "ScoreMapping.h"
 
+namespace StrasheelaSuccessor {
+
 /*
 
 // !! TODO
@@ -18,3 +20,6 @@ public:
 };
 
 */
+
+
+}

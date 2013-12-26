@@ -9,6 +9,13 @@
 #ifndef __MusicRepresentation__ScoreMapping__
 #define __MusicRepresentation__ScoreMapping__
 
-#include <iostream>
+//#include <iostream>
+
+namespace StrasheelaSuccessor {
+
+    
+    
+}
+
 
 #endif /* defined(__MusicRepresentation__ScoreMapping__) */

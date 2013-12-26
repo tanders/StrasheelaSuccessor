@@ -11,6 +11,12 @@
 		E59140591865ED7700F29EF2 /* MusicRepresentation.1 in CopyFiles */ = {isa = PBXBuildFile; fileRef = E59140581865ED7700F29EF2 /* MusicRepresentation.1 */; };
 		E5E03670186B6BE8007A2C63 /* ScoreCore.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E5E0366E186B6BE8007A2C63 /* ScoreCore.cpp */; };
 		E5E03673186B8F3A007A2C63 /* ScoreMapping.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E5E03671186B8F3A007A2C63 /* ScoreMapping.cpp */; };
+		E5E03676186C610C007A2C63 /* ScoreCore_Item.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E5E03674186C610C007A2C63 /* ScoreCore_Item.cpp */; };
+		E5E03679186CB552007A2C63 /* ScoreCore_ScoreObject.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E5E03677186CB552007A2C63 /* ScoreCore_ScoreObject.cpp */; };
+		E5E0367C186CB5A8007A2C63 /* ScoreCore_TimeMixin.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E5E0367A186CB5A8007A2C63 /* ScoreCore_TimeMixin.cpp */; };
+		E5E0367F186CB5EB007A2C63 /* ScoreCore_Parameter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E5E0367D186CB5EB007A2C63 /* ScoreCore_Parameter.cpp */; };
+		E5E03688186CB6D7007A2C63 /* ScoreCore_Container.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E5E03686186CB6D7007A2C63 /* ScoreCore_Container.cpp */; };
+		E5E0368B186CB72D007A2C63 /* ScoreCore_TypeArgs.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E5E03689186CB72D007A2C63 /* ScoreCore_TypeArgs.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -34,6 +40,18 @@
 		E5E0366F186B6BE8007A2C63 /* ScoreCore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScoreCore.h; sourceTree = "<group>"; };
 		E5E03671186B8F3A007A2C63 /* ScoreMapping.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ScoreMapping.cpp; sourceTree = "<group>"; };
 		E5E03672186B8F3A007A2C63 /* ScoreMapping.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScoreMapping.h; sourceTree = "<group>"; };
+		E5E03674186C610C007A2C63 /* ScoreCore_Item.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ScoreCore_Item.cpp; sourceTree = "<group>"; };
+		E5E03675186C610C007A2C63 /* ScoreCore_Item.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScoreCore_Item.h; sourceTree = "<group>"; };
+		E5E03677186CB552007A2C63 /* ScoreCore_ScoreObject.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ScoreCore_ScoreObject.cpp; sourceTree = "<group>"; };
+		E5E03678186CB552007A2C63 /* ScoreCore_ScoreObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScoreCore_ScoreObject.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.cpp; };
+		E5E0367A186CB5A8007A2C63 /* ScoreCore_TimeMixin.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ScoreCore_TimeMixin.cpp; sourceTree = "<group>"; };
+		E5E0367B186CB5A8007A2C63 /* ScoreCore_TimeMixin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScoreCore_TimeMixin.h; sourceTree = "<group>"; };
+		E5E0367D186CB5EB007A2C63 /* ScoreCore_Parameter.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ScoreCore_Parameter.cpp; sourceTree = "<group>"; };
+		E5E0367E186CB5EB007A2C63 /* ScoreCore_Parameter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScoreCore_Parameter.h; sourceTree = "<group>"; };
+		E5E03686186CB6D7007A2C63 /* ScoreCore_Container.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ScoreCore_Container.cpp; sourceTree = "<group>"; };
+		E5E03687186CB6D7007A2C63 /* ScoreCore_Container.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScoreCore_Container.h; sourceTree = "<group>"; };
+		E5E03689186CB72D007A2C63 /* ScoreCore_TypeArgs.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ScoreCore_TypeArgs.cpp; sourceTree = "<group>"; };
+		E5E0368A186CB72D007A2C63 /* ScoreCore_TypeArgs.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScoreCore_TypeArgs.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -66,12 +84,24 @@
 		E59140551865ED7700F29EF2 /* MusicRepresentation */ = {
 			isa = PBXGroup;
 			children = (
-				E5E0366E186B6BE8007A2C63 /* ScoreCore.cpp */,
-				E5E0366F186B6BE8007A2C63 /* ScoreCore.h */,
-				E5E03671186B8F3A007A2C63 /* ScoreMapping.cpp */,
-				E5E03672186B8F3A007A2C63 /* ScoreMapping.h */,
 				E59140561865ED7700F29EF2 /* main.cpp */,
 				E59140581865ED7700F29EF2 /* MusicRepresentation.1 */,
+				E5E0366E186B6BE8007A2C63 /* ScoreCore.cpp */,
+				E5E0366F186B6BE8007A2C63 /* ScoreCore.h */,
+				E5E03686186CB6D7007A2C63 /* ScoreCore_Container.cpp */,
+				E5E03687186CB6D7007A2C63 /* ScoreCore_Container.h */,
+				E5E03674186C610C007A2C63 /* ScoreCore_Item.cpp */,
+				E5E03675186C610C007A2C63 /* ScoreCore_Item.h */,
+				E5E0367D186CB5EB007A2C63 /* ScoreCore_Parameter.cpp */,
+				E5E0367E186CB5EB007A2C63 /* ScoreCore_Parameter.h */,
+				E5E03677186CB552007A2C63 /* ScoreCore_ScoreObject.cpp */,
+				E5E03678186CB552007A2C63 /* ScoreCore_ScoreObject.h */,
+				E5E0367A186CB5A8007A2C63 /* ScoreCore_TimeMixin.cpp */,
+				E5E0367B186CB5A8007A2C63 /* ScoreCore_TimeMixin.h */,
+				E5E03689186CB72D007A2C63 /* ScoreCore_TypeArgs.cpp */,
+				E5E0368A186CB72D007A2C63 /* ScoreCore_TypeArgs.h */,
+				E5E03671186B8F3A007A2C63 /* ScoreMapping.cpp */,
+				E5E03672186B8F3A007A2C63 /* ScoreMapping.h */,
 			);
 			path = MusicRepresentation;
 			sourceTree = "<group>";
@@ -127,8 +157,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E5E0367F186CB5EB007A2C63 /* ScoreCore_Parameter.cpp in Sources */,
 				E59140571865ED7700F29EF2 /* main.cpp in Sources */,
+				E5E03679186CB552007A2C63 /* ScoreCore_ScoreObject.cpp in Sources */,
 				E5E03670186B6BE8007A2C63 /* ScoreCore.cpp in Sources */,
+				E5E03676186C610C007A2C63 /* ScoreCore_Item.cpp in Sources */,
+				E5E0367C186CB5A8007A2C63 /* ScoreCore_TimeMixin.cpp in Sources */,
+				E5E0368B186CB72D007A2C63 /* ScoreCore_TypeArgs.cpp in Sources */,
+				E5E03688186CB6D7007A2C63 /* ScoreCore_Container.cpp in Sources */,
 				E5E03673186B8F3A007A2C63 /* ScoreMapping.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -12,24 +12,12 @@
 #include <vector>
 #include <map>
 #include <boost/variant.hpp>
-#include <boost/lexical_cast.hpp>
 
 using namespace std;
 
 
-/*******************************************************************************************************/
-//
-// Defining args typ for accessing optional and named arguments for constructors of ScoreObject and subclasses.
-//
-/*******************************************************************************************************/
+namespace StrasheelaSuccessor {
 
-// typedef boost::variant<int,string> arg;
-/** Shorthand type for argument maps for score object initialisation, which allow for optional and named arguments for constructors of ScoreObject and subclasses. Conveniently create argument map for constructors like
- 
- SomeScoreObjectClass x = {args {{"arg1", 42}, {"arg2", "test"}}}
- */
-// boost::variant doc: http://www.boost.org/doc/libs/1_55_0/doc/html/variant.html
-typedef map<string, boost::variant<int,string>> args;
 
 /*******************************************************************************************************/
 //
@@ -37,6 +25,115 @@ typedef map<string, boost::variant<int,string>> args;
 //
 /*******************************************************************************************************/
 
+
+/* Skipped Strasheela classes
+ 
+ NonType
+ Reflection
+ 
+ */
+
+    
+
+
+
+/* Skipped Strasheela classes
+ 
+ LeaveUninitialisedParameterMixin
+ 
+ */
+
+
+/* // uncompilable/uncompleted definitions are wrapped in comments
+ 
+ // Shall I really use this?
+ class Amplitude : public Parameter {
+ public:
+ float getValueNormalized(void)
+ float getValueInVelocity(void)
+ };
+ 
+ */
+
+
+
+
+/* Skipped Strasheela classes
+ 
+ Modifier
+ Aspect
+ TemporalAspect
+ 
+ */
+
+/* // uncompilable/uncompleted definitions are wrapped in comments
+ 
+ class Sequential : public Container {
+ <#instance variables#>
+ 
+ public:
+ <#member functions#>
+ };
+ 
+ class Simultaneous : public Container {
+ <#instance variables#>
+ 
+ public:
+ <#member functions#>
+ };
+ 
+ 
+ // Simplification of Strasheela: Element is a TemporalElement (only nesting in a tree, no graph)
+ class Element : public Item, public TimeMixin {
+ <#instance variables#>
+ 
+ public:
+ <#member functions#>
+ };
+ 
+ */
+
+/* Skipped Strasheela classes
+ 
+ AbstractElement
+ TemporalElement
+ 
+ */
+
+
+/* // uncompilable/uncompleted definitions are wrapped in comments
+ 
+ // Class renamed: Pause -> Rest
+ class Rest : public Element {
+ <#instance variables#>
+ 
+ public:
+ <#member functions#>
+ };
+ 
+ */
+
+/* Skipped Strasheela classes
+ 
+ Event
+ 
+ */
+
+/* // uncompilable/uncompleted definitions are wrapped in comments
+ 
+ 
+ class MinimalNote : public Element {
+ <#instance variables#>
+ 
+ public:
+ <#member functions#>
+ };
+ 
+ 
+ */
+
+
+}
 
 
 #endif /* defined(__MusicRepresentation__ScoreCore__) */

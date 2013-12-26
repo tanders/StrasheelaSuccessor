@@ -6,9 +6,10 @@
 //  Copyright (c) 2013 torsten. All rights reserved.
 //
 
-#include "ScoreCore.h"
+#include "ScoreCore_Parameter.h"
 
 using namespace std;
+//using namespace StrasheelaSuccessor;
 
 
 int main(int argc, const char * argv[])
@@ -32,6 +33,7 @@ int main(int argc, const char * argv[])
 //    ScoreObject scoreObject = {args {{"info", 42}}}; // throws as expected
 //    ScoreObject scoreObject = {args {{"info", "bla"}, {"buggy_arg", "value"}}}; // successfully throws exception
 //    scoreObject.addInfo("test 2");
+    
     
     Parameter p = {args {{"info", "bla"}, {"value", 41}}};
 

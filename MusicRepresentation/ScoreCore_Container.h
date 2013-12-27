@@ -10,8 +10,9 @@
 #define __MusicRepresentation__ScoreCore_Container__
 
 //#include "ScoreCore_ScoreObject.h" // TMP
-#include "ScoreCore_TimeMixin.h"
 #include "ScoreCore_Item.h"
+#include "ScoreCore_TimeMixin.h"
+
 
 // Simplification of Strasheela: Container is basically a TemporalAspect (only nesting in a tree, no graph)
 class Container : public Item, public TimeMixin {
@@ -20,6 +21,17 @@ class Container : public Item, public TimeMixin {
 public:
     Container(args as);
     std::vector<Item> getItems(void);
+};
+
+
+class Sequential : public Container {
+public:
+    void constrainTiming(void);
+};
+
+class Simultaneous : public Container {
+public:
+    void constrainTiming(void);
 };
 
 

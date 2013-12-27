@@ -6,7 +6,7 @@
 //  Copyright (c) 2013 torsten. All rights reserved.
 //
 
-#include "ScoreCore_Parameter.h"
+#include "ScoreCore_Element.h"
 
 using namespace std;
 //using namespace StrasheelaSuccessor;
@@ -35,12 +35,23 @@ int main(int argc, const char * argv[])
 //    scoreObject.addInfo("test 2");
     
     
-    Parameter p = {args {{"info", "bla"}, {"value", 41}}};
-
-//    cout << "hasThisInfo? " << scoreObject.hasThisInfo("bla") << "\n";
-    cout << "hasThisInfo? " << p.hasThisInfo("bla") << "\n";
-    cout << "value:  " << p.getValue() << "\n";
-    cout << "unit :  " << p.getUnit() << "\n";
+//    Parameter p = {args {{"info", "bla"}, {"value", 41}}};
+//
+////    cout << "hasThisInfo? " << scoreObject.hasThisInfo("bla") << "\n";
+//    cout << "hasThisInfo? " << p.hasThisInfo("bla") << "\n";
+//    cout << "value:  " << p.getValue() << "\n";
+//    cout << "unit :  " << p.getUnit() << "\n";
+    
+    Element e = {args {{"info", "bla"}, {"endTime", 10}, {"duration", 10}}};
+    
+    //    cout << "hasThisInfo? " << scoreObject.hasThisInfo("bla") << "\n";
+    cout << "hasThisInfo? " << e.hasThisInfo("bla") << "\n";
+    cout << "startTime:  " << e.getStartTime() << "\n";
+    cout << "endTime:  " << e.getEndTime() << "\n";
+    cout << "duration :  " << e.getDuration() << "\n";
+    
+    
+    
     return 0;
 }
 

@@ -15,12 +15,19 @@
  The instance variables startTime and endTime are absolute TimePoints. The variable offsetTime is a relative TimeInterval, whose meaning depends on the enclosign container (semultaneous or sequential). The variable duration is the TimeInterval difference between startTime and endTime.
  */
 class TimeMixin {
-    int startTime, endTime, offsetTime, duration;
+    int offsetTime, startTime, duration, endTime;
     
 public:
     TimeMixin(args as);
     
-    // !! TODO: many functions, see Strasheela
+    int getOffsetTime(void) {return offsetTime;};
+    int getStartTime(void) {return startTime;};
+    int getDuration(void) {return duration;};
+    int getEndTime(void) {return endTime;};
+
+#warning TODO: many functions still missing, see Strasheela
+    
+     
 };
 
 

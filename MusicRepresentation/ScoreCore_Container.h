@@ -21,6 +21,8 @@ class Container : public Item, public TimeMixin {
 public:
     Container(args as);
     std::vector<Item> getItems(void);
+    void addItem(Item*);
+
 };
 
 

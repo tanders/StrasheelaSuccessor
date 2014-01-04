@@ -18,6 +18,6 @@ public:
     Element(args as);
 };
 
-
+#warning define note etc.
 
 #endif /* defined(__MusicRepresentation__ScoreCore_Element__) */

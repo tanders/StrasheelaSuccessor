@@ -12,5 +12,8 @@
 Element::Element(args as) :
 Item{reduceArgsBy(as, std::vector<std::string>{"startTime", "offsetTime", "endTime", "duration"})},
 TimeMixin{reduceArgsBy(as, std::vector<std::string>{"info"})}
-{}
-
+{ this->bilinkParameters(std::vector<Parameter*> {
+    this->getOffsetTimeParameter(),
+    this->getStartTimeParameter(),
+    this->getDurationParameter(),
+    this->getEndTimeParameter()}); }

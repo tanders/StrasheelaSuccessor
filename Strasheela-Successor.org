@@ -1,7 +1,7 @@
 #+TITLE: Planning/designing the Strasheela Successor
-#+NAME: Torsten Anders
+#+AUTHOR: Torsten Anders
 
-See also [[file:~/oz/music/Strasheela/strasheela/strasheela/others/TODO/Strasheela-TODO.org::*Real-time%20constraint%20programming%20in%20Lisp%20(or%20other%20high-level%20languages)][Real-time constraint programming in Lisp (or other high-level languages)]]
+# See also [[file:~/oz/music/Strasheela/strasheela/strasheela/others/TODO/Strasheela-TODO.org::*Real-time%20constraint%20programming%20in%20Lisp%20(or%20other%20high-level%20languages)][Real-time constraint programming in Lisp (or other high-level languages)]]
 
 * Strasheela Successor: Design Overview
 

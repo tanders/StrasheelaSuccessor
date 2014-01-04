@@ -17,8 +17,7 @@ using namespace std;
 
 
 namespace StrasheelaSuccessor {
-
-
+  
 /*******************************************************************************************************/
 //
 // Music representation class hierarchy
@@ -46,12 +45,6 @@ namespace StrasheelaSuccessor {
 
 /* // uncompilable/uncompleted definitions are wrapped in comments
  
- // Shall I really use this?
- class Amplitude : public Parameter {
- public:
- float getValueNormalized(void)
- float getValueInVelocity(void)
- };
  
  */
 
@@ -68,20 +61,7 @@ namespace StrasheelaSuccessor {
 
 /* // uncompilable/uncompleted definitions are wrapped in comments
  
- class Sequential : public Container {
- <#instance variables#>
- 
- public:
- <#member functions#>
- };
- 
- class Simultaneous : public Container {
- <#instance variables#>
- 
- public:
- <#member functions#>
- };
- 
+  
  
  // Simplification of Strasheela: Element is a TemporalElement (only nesting in a tree, no graph)
  class Element : public Item, public TimeMixin {

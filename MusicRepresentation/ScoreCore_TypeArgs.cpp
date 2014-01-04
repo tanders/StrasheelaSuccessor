@@ -23,12 +23,59 @@ string getStringArg::operator()(string& str) const {
 string getStringArg::operator()(int & i) const {
     throw invalid_argument{"Not a string: " + boost::lexical_cast<string>(i)};
 }
+string getStringArg::operator()(ScoreObject& x) const {
+    throw invalid_argument{"Not a string: " // + boost::lexical_cast<string>(x)
+    };
+}
+string getStringArg::operator()(std::vector<ScoreObject>& xs) const {
+    throw invalid_argument{"Not a string: " // + boost::lexical_cast<string>(xs)
+    };
+}
 
+int getIntArg::operator()(int & i) const {
+    return i;
+}
 int getIntArg::operator()(string& str) const {
     throw invalid_argument{"Not an int: " + str};
 }
-int getIntArg::operator()(int & i) const {
-    return i;
+int getIntArg::operator()(ScoreObject& x) const {
+    throw invalid_argument{"Not an int: " // + boost::lexical_cast<string>(x)
+    };
+}
+int getIntArg::operator()(std::vector<ScoreObject>& xs) const {
+    throw invalid_argument{"Not a string: " // + boost::lexical_cast<string>(xs)
+    };
+}
+
+ScoreObject getScoreObjectArg::operator()(ScoreObject& x) const {
+    return x;
+}
+ScoreObject getScoreObjectArg::operator()(string& str) const {
+    throw invalid_argument{"Not an ScoreObject: " + str};
+}
+ScoreObject getScoreObjectArg::operator()(int & i) const {
+    throw invalid_argument{"Not an ScoreObject" // + boost::lexical_cast<string>(i)
+    };
+}
+ScoreObject getScoreObjectArg::operator()(std::vector<ScoreObject>& xs) const {
+    throw invalid_argument{"Not a string" // + boost::lexical_cast<string>(xs)
+    };
+}
+
+
+std::vector<ScoreObject> getVectorOfScoreObjectsArg::operator()(std::vector<ScoreObject>& xs) const {
+    return xs;
+}
+std::vector<ScoreObject> getVectorOfScoreObjectsArg::operator()(string& str) const {
+    throw invalid_argument{"Not a vector<ScoreObject>: " + str};
+}
+std::vector<ScoreObject> getVectorOfScoreObjectsArg::operator()(int & i) const {
+    throw invalid_argument{"Not a vector<ScoreObject>: " // + boost::lexical_cast<string>(i)
+    };
+}
+std::vector<ScoreObject> getVectorOfScoreObjectsArg::operator()(ScoreObject& x) const {
+    throw invalid_argument{"Not a vector<ScoreObject>" // + boost::lexical_cast<string>(x)
+    };
 }
 
 /*******************************************************************************************************/
@@ -60,4 +107,15 @@ string extractStringArg(args as, string argName, string defaultVal){
     boost::apply_visitor(getStringArg(), as.at(argName)) :
     defaultVal;
 }
-
+// // Before uncommenting again find suitable default value (corresponding to nil)
+//ScoreObject extractScoreObjectArg(args as, string argName){
+//    return as.count(argName) ?
+//    boost::apply_visitor(getScoreObjectArg(), as.at(argName)) :
+//    void; // is this equivalent of nil?
+//}
+std::vector<ScoreObject> extractVectorOfScoreObjectsArg(args as, string argName){
+    return as.count(argName) ?
+    boost::apply_visitor(getVectorOfScoreObjectsArg(), as.at(argName)) :
+    // empty vector as default (TODO: when/how is this deleted)
+    std::vector<ScoreObject> {};
+}

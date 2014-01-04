@@ -50,9 +50,12 @@
 #ifndef __MusicRepresentation__ScoreCore_TypeArgs__
 #define __MusicRepresentation__ScoreCore_TypeArgs__
 
+class ScoreObject;
+
 #include <map>
 #include <vector>
 #include <boost/variant.hpp>
+#include "ScoreCore_ScoreObject.h"
 
 /*******************************************************************************************************/
 //
@@ -66,23 +69,56 @@
  SomeScoreObjectClass x = {args {{"arg1", 42}, {"arg2", "test"}}}
  */
 // boost::variant doc: http://www.boost.org/doc/libs/1_55_0/doc/html/variant.html
-typedef std::map<std::string, boost::variant<int,std::string>> args;
+typedef std::map<std::string, boost::variant<int,std::string,ScoreObject,std::vector<ScoreObject>>> args;
 
 
-/** Defines compile-time checked accessors for every arg type (i.e. the values in the map type called args).
+/** Defines compile-time checked accessors for every type given to args (i.e. the values in the map type called args).
  */
 // TODO: consider rewriting with type template
 class getStringArg : public boost::static_visitor<std::string> {
 public:
     std::string operator()(std::string& str) const;
-    std::string operator()(int & i) const;
+    std::string operator()(int& i) const;
+    std::string operator()(ScoreObject& x) const;
+    std::string operator()(std::vector<ScoreObject>& xs) const;
 };
 class getIntArg : public boost::static_visitor<int> {
 public:
     int operator()(std::string& str) const;
-    int operator()(int & i) const;
+    int operator()(int& i) const;
+    int operator()(ScoreObject& x) const;
+    int operator()(std::vector<ScoreObject>& xs) const;
+};
+class getScoreObjectArg : public boost::static_visitor<ScoreObject> {
+public:
+    ScoreObject operator()(std::string& str) const;
+    ScoreObject operator()(int& i) const;
+    ScoreObject operator()(ScoreObject& x) const;
+    ScoreObject operator()(std::vector<ScoreObject>& xs) const;
+};
+class getVectorOfScoreObjectsArg : public boost::static_visitor<std::vector<ScoreObject>> {
+public:
+    std::vector<ScoreObject> operator()(std::string& str) const;
+    std::vector<ScoreObject> operator()(int& i) const;
+    std::vector<ScoreObject> operator()(ScoreObject& x) const;
+    std::vector<ScoreObject> operator()(std::vector<ScoreObject>& xs) const;
 };
 
+
+/** Defines compile-time checked accessors for (i.e. the values in the map type called args).
+ */
+// TODO: test and revise
+template <typename T>
+class getArg : public boost::static_visitor<T> {
+public:
+    T operator()(const T& t) { return t; };
+    
+    template <typename U>
+    T operator()(const U& u) {
+        // input of arbitrary type U instead of given T
+        throw std::invalid_argument{"invalid type"};
+    }
+};
 
 /*******************************************************************************************************/
 //
@@ -94,6 +130,8 @@ args reduceArgsBy(args as, std::vector<std::string> keys);
 
 int extractIntArg(args as, std::string argName, int defaultVal);
 std::string extractStringArg(args as, std::string argName, std::string defaultVal);
+//ScoreObject extractScoreObjectArg(args as, std::string argName);
+std::vector<ScoreObject> extractVectorOfScoreObjectsArg(args as, std::string argName);
 
 
 

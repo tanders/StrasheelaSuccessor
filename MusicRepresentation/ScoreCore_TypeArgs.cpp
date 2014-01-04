@@ -84,7 +84,7 @@ std::vector<ScoreObject> getVectorOfScoreObjectsArg::operator()(ScoreObject& x) 
 //
 /*******************************************************************************************************/
 
-/** Returns a copy of args map as, reduced by the keys in keys
+/*! Returns a copy of args map as, reduced by the keys in keys
  */
 args reduceArgsBy(args as, vector<string> keys) {
     for(auto key: keys) {
@@ -94,7 +94,7 @@ args reduceArgsBy(args as, vector<string> keys) {
 }
 
 
-/** Extracts arg named argName from args map as. If not contained in as, then defaultVal is return instead.
+/*! Extracts arg named argName from args map as. If not contained in as, then defaultVal is return instead.
  */
 // TODO: consider rewriting with type template
 int extractIntArg(args as, string argName, int defaultVal){

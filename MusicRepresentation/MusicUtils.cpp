@@ -13,11 +13,11 @@
 #include <boost/algorithm/string/predicate.hpp> // string istarts_with
 #include "MusicUtils.h"
 
-/** %% freq at keynum 0, keynum 69 = 440 Hz
- %% */
+/*! freq at keynum 0, keynum 69 = 440 Hz
+ */
 const float freq0 = 8.175798915643707;
 
-/** Transforms a keynum into the corresponding frequency in an equally tempered scale with keysPerOctave keys per octave. The function is 'tuned' such that keynumToFreq(69 12) returns 440 Hz.
+/*! Transforms a keynum into the corresponding frequency in an equally tempered scale with keysPerOctave keys per octave. The function is 'tuned' such that keynumToFreq(69 12) returns 440 Hz.
  Note that he term keynum here is not limited to a MIDI keynumber but denotes a keynumber in any equidistant tuning. For instance, if keysPerOctave=1200 then keynum denotes cent values.
   */
 double keynumToFreq(double keynum, int keysPerOctave){
@@ -25,9 +25,9 @@ double keynumToFreq(double keynum, int keysPerOctave){
 }
 
 
-/** Transforms freq into the corresponding keynum in an equally tempered scale with keysPerOctave keys per octave. The function is 'tuned' such that freqToKeynum(440, 12) returns 69.
- Note that he term keynum here is not limited to a MIDI keynumber but denotes a keynumber in any equidistant tuning. For instance, if keysPerOctave=1200 then keynum denotes cent values.
-  */
+/*! Transforms freq into the corresponding keynum in an equally tempered scale with keysPerOctave keys per octave. The function is 'tuned' such that freqToKeynum(440, 12) returns 69.
+Note that he term keynum here is not limited to a MIDI keynumber but denotes a keynumber in any equidistant tuning. For instance, if keysPerOctave=1200 then keynum denotes cent values.
+ */
 double freqToKeynum(double freq, int keysPerOctave){
     return log2(freq/freq0) * (double)(keysPerOctave);
 }
@@ -39,8 +39,8 @@ GetPitchesPerOctave
 
 */
 
-/** Returns true if PitchUnit is an atom which matches the pattern et<Digit>+ such as et31 or et72.
-  */
+/*! Returns true if PitchUnit is an atom which matches the pattern et<Digit>+ such as et31 or et72.
+ */
 bool isET(std::string pitchUnit) {
 //    char pitchString[] = pitchUnit;
     // tail are the chars after first two chars
@@ -51,8 +51,8 @@ bool isET(std::string pitchUnit) {
         && boost::algorithm::all(tail, isdigit);
 }
 
-/** Returns the pitches per octave expressed by an ET pitch unit, e.g., for et31 it returns 31.
-  */
+/*! Returns the pitches per octave expressed by an ET pitch unit, e.g., for et31 it returns 31.
+ */
 // TODO: consider whether test isET is really needed in this definition. E.g., when pitchToMidi is called, this test is executed again.
 int getPitchesPerOctave(std::string pitchUnit) {
     if (isET(pitchUnit)) {

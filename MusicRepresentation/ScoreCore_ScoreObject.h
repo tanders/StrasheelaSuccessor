@@ -18,7 +18,7 @@ typedef std::map<std::string, boost::variant<int,std::string,ScoreObject,std::ve
 
 #include "ScoreCore_TypeArgs.h"
 
-/** [abstract class] The most general data type for score data is a ScoreObject. info can store arbitrary user information (internally a vector of strings).
+/*! [abstract class] The most general data type for score data is a ScoreObject. info can store arbitrary user information (internally a vector of strings).
  */
 class ScoreObject {
     //    int id;  // Perhaps I need id later again...

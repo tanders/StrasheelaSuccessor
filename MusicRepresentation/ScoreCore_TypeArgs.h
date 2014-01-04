@@ -47,6 +47,11 @@
  
   */
 
+/*! \file ScoreCore_TypeArgs.h
+Defines types and classes which allow to quasi hand optional and named parameters to score object constructors. These parameters are wrapped in a map.
+ */
+
+
 #ifndef __MusicRepresentation__ScoreCore_TypeArgs__
 #define __MusicRepresentation__ScoreCore_TypeArgs__
 
@@ -64,7 +69,10 @@ class ScoreObject;
 /*******************************************************************************************************/
 
 // typedef boost::variant<int,std::string> arg;
-/** Shorthand type for argument maps for score object initialisation, which allow for optional and named arguments for constructors of ScoreObject and subclasses. Conveniently create argument map for constructors like
+
+/*! \typedef args
+ 
+ Shorthand type for argument maps for score object initialisation, which allow for optional and named arguments for constructors of ScoreObject and subclasses. Conveniently create argument map for constructors like
  
  SomeScoreObjectClass x = {args {{"arg1", 42}, {"arg2", "test"}}}
  */
@@ -72,7 +80,7 @@ class ScoreObject;
 typedef std::map<std::string, boost::variant<int,std::string,ScoreObject,std::vector<ScoreObject>>> args;
 
 
-/** Defines compile-time checked accessors for every type given to args (i.e. the values in the map type called args).
+/*! Defines compile-time checked accessors for every type given to args (i.e. the values in the map type called args).
  */
 // TODO: consider rewriting with type template
 class getStringArg : public boost::static_visitor<std::string> {
@@ -105,7 +113,7 @@ public:
 };
 
 
-/** Defines compile-time checked accessors for (i.e. the values in the map type called args).
+/*! Defines compile-time checked accessors for (i.e. the values in the map type called args).
  */
 // TODO: test and revise
 template <typename T>

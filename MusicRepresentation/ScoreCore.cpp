@@ -6,7 +6,7 @@
 //  Copyright (c) 2013 torsten. All rights reserved.
 //
 
-/**
+/*! 
  This file defines the core for a music score data structure of [Strasheela successor].
  
  Certain classes in the hierarchy are marked as [abstract class]. These classes should not be instantiated. Other classes are marked as [semi abstract class]. These classes are generic data types which may be instantiated. However, the user is encouraged to define more specific subclasses of these. Classes marked as [concrete class] may be freely instantiated, of course the user may define subclasses of them too.

@@ -9,7 +9,7 @@
 #include "ScoreCore_TimeMixin.h"
 
 #warning unify all timeUnit values
-/**
+/*!
  Args:
  int offsetTime (later Gecode::IntVar)
  int startTime

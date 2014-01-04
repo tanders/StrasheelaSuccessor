@@ -8,8 +8,8 @@
 #ifndef __MusicRepresentation__ScoreCore_Item__
 #define __MusicRepresentation__ScoreCore_Item__
 
-//// forward declared dependencies
-//// -> Container def should go into its own file, and this declaration at the top of this file.
+// forward declared dependencies
+// -> Container def should go into its own file, and this declaration at the top of this file.
 class Container;
 class Parameter; // TODO: BUG: should not be needed, as Parameter class def is included!
 

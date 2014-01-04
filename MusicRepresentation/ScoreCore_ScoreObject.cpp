@@ -10,7 +10,7 @@
 
 using namespace std;
 
-/** [constructor with map argument for optional/named arguments]
+/*! [constructor with map argument for optional/named arguments]
  Args:
  string info: arbitrary user information for this score object (additional infos can be added with nmember function addInfo)
  */
@@ -26,13 +26,13 @@ ScoreObject::ScoreObject(args as) {
         throw std::invalid_argument{"ScoreObject::ScoreObject(args as)" + x.first};
 };
 
-/** Returns vectors of all info strings stored. */
+/*! Returns vectors of all info strings stored. */
 vector<string> ScoreObject::getInfo(void) { return info; }
 
-/** [destructive method] Adds myInfo to vector of stored infos. */
+/*! [destructive method] Adds myInfo to vector of stored infos. */
 void ScoreObject::addInfo(string myInfo) { info.push_back(myInfo); }
 
-/** Returns bool whether internal vector of info strings contains myInfo. */
+/*! Returns bool whether internal vector of info strings contains myInfo. */
 bool ScoreObject::hasThisInfo(string myInfo) {
     return any_of(info.begin(), info.end(), [&](string s){return s.compare(myInfo) == 0;});
 }

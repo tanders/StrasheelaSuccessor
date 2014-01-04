@@ -11,5 +11,5 @@
 // Command line options of resulting execuable:
 // https://github.com/philsquared/Catch/blob/master/docs/command-line.md
 #define CATCH_CONFIG_MAIN
-//#include "catch.hpp"
+#include "catch.hpp"
 

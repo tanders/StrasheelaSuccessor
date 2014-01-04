@@ -1,0 +1,725 @@
+#+TITLE: Planning/designing the Strasheela Successor
+#+NAME: Torsten Anders
+
+See also [[file:~/oz/music/Strasheela/strasheela/strasheela/others/TODO/Strasheela-TODO.org::*Real-time%20constraint%20programming%20in%20Lisp%20(or%20other%20high-level%20languages)][Real-time constraint programming in Lisp (or other high-level languages)]]
+
+* Strasheela Successor: Design Overview
+
+** Requirements 
+
+   - Support for real-time CP, hence better efficiency required 
+
+   - Allows for interfacing / integration into various widely-used composition systems
+     - Max -- interface vai OSC or Max's C API
+     - SuperCollider -- interface via OSC (or SC's )
+     - PWGL -- interface via OSC or SWIG
+     - ...
+
+
+   - Implementation in one of more languages that is widely used
+     http://www.catb.org/~esr/writings/cathedral-bazaar/cathedral-bazaar/
+     
+
+** Design Outline
+
+*** Music representation
+
+    Based on a hierarchy of classes similar to Strasheela 
+
+    However, design slightly simplified compared with Strasheela 
+    - Nesting only as tree (not graph)
+    - Elements in containers are stored in C++ std vectors
+    - Access to orthogonal information via timing -- harmony, metric structure etc run parallel in time
+
+    Potential problem
+    - Access to orthogonal information can be delayed and needs concurrency for implementation -- how to implement that securely (C++ futures?)
+
+
+*** Constraint application
+
+    - For inter-operability with other programming languages, constraint application is based on class instances instead of first-class functions -- a certain class method serves as the function. Defining classes is a bit more cumbersome than defining functions, but there is no limitation in functionality
+
+    - Rules are all defined as subclasses of the same abstract =Rule= class. Similar to PWGL they expect score parameters as arguments (like in Strasheela parameters are objects themselves, not just variables) and apply constraints to them.
+    - Rule applicators are defined as subclasses of some abstract =RuleApplicator= class. Similar to PWGL they (i.e., one of their methods) expects a rule (an object encapsulating a method applying constraints) and further arguments controlling where/how the rule is applied.
+      Note that constraint application may be delayed for unaccessible score contexts -- does that need concurrency?
+    - Rule applicators return an AppliedRule object, which encapsulates a method that combines the applicator with its arguments and its rule. This result is given to the top-level solver (as in PWGL)
+    - The top-level [solver] is similar in design to PWGL for simplicity. Internally, it creates the music representation according to its arguments, applies the constraints, and sets a branching strategy. In contrast to PWGL, all these aspects may be controlled by very few arguments, which support complex specifications encapsulated in custom objects. For example, the score creation may be given as a function (again an object where a method serves as that function) that returns an arbitrary score as result. 
+
+
+*** Constraints and search
+
+    - Implementation uses Gecode for constraint programming and search
+    - Branching strategies similar as in Strasheela implemented
+    - For ease of use, some default branching strategy refined that covers many cases
+    - Default branching strategy branches at pitch domains (not pitch classes), so that heuristic constraints affecting the choice of a pitch can be implemented
+
+
+*** Interface issues 
+    
+
+
+** Implementation 
+
+   Implementation in C++
+   - !! Direct support of Gecode
+   - Efficiency of implementation
+   - ? Language for system design -- allows for tight integration in other systems -- I will hardly use that in the end, if OSC is main interface
+   - Widely used and supported language  
+
+*** ? Can I do the above in principle also with other languages, e.g., Common Lisp?
+
+    - Integration with other systems: via Open Sound Control
+    - ?? Gecode integration: via foreign function calls -- cumbersome
+    - Plain ANSI Common Lisp: allows integration into other Lisp systems
+    Note: real-time with garbage collection is an issue...   
+
+
+*** ?? Alternative: Create Gecode bindings for some scripting language :ARCHIVE:
+
+    If Gecode could be compiled with SWIG, then I could also use some other language...
+
+    Difficult to do that for the whole of some library I do not know very well (Gecode)
+ 
+    Gecode team has used SWIG themselves before for Java interface
+    But they had also problems with memory management (memory leak) due to some SWIG bug
+    http://www.gecode.org/pipermail/users/2006-March/000423.html
+    
+
+** Interfaces 
+
+   In addition to plain C++ interface, alternative interface(s) for flexible/easy use and testing 
+
+*** Open Sound Control
+
+    Design a simple language for defining a CSP (predefined music constraints with args)
+    Interface in principle similar to Cluster Engine + Cluster Rules 
+
+    Some OSC command for starting search ...
+
+    Limitation: I cannot see a way to implement new rules with such an interface. 
+    Alternatives
+    - Document how to implement new rules in C++
+    - ! Consider a scripting language interface plugins, including support of user constraints (which needs Gecode bindings)
+      Users would start Strasheela Successor in background by giving it additional definitions like user constraints defined as a plugin written in a scripting language
+ 
+
+*** Scripting Language
+
+    Ideally, with a well-chosen scripting language I can define most of the functionality of the Strasheela successor in that scripting language, at least a first version (later I may move certain parts to C++ for efficiency)
+      - Easy access to Gecode within a higher-level language
+      - ? Still resulting application can be embedded in other systems etc.
+       	
+
+**** Which Language?
+     
+***** Python 
+      - Easy to learn
+      - Widely used
+      - Good support by SWIG
+
+****** Boost::python
+
+       From 2002-2005, so no C++11
+
+       http://www.boost.org/doc/libs/1_55_0/libs/python/doc/index.html
+
+       Boost.Python lags support for other langauges (C#, Java, Ruby, ...) and it's bound to GCC (huge dependency). 
+
+
+***** Either Common Lisp or Scheme-based
+      - High level
+      - Well-known in CAC community
+      - I know it well too
+      Scheme wasn't designed as an extension language, but it's pretty small, which makes it very suitable to use as an embedded language. On the other hand, Common Lisp is huge. That doesn't mean that it cannot be embedded, but it makes little sense having a "scripting" language as large as CL. 
+
+
+**** ! Compile with SWIG
+
+***** Why?
+
+      Create bindings of my Strasheela Successor library (implemented in C++) to some higher level language 
+      - Consider this at least as important option for interactive testing with a scripting language
+      - Scripting/plugin language for Strasheela Successor, e.g., for defining additional constraints -- needs bindings for only a subset of Gecode to the scripting language (e.g., the standard constraints on integers as a starting point)
+
+
+
+      See tests I did in [[file:///Users/torsten/c_cpp/Learning%2BTesting/SWIG/TutorialExample/][TutorialExample]]
+
+      SWIG allows for bindings to various programming languages, e.g., Common Lisp (but C++ support rather new)
+      http://www.swig.org/compat.html 
+
+
+      No C++11 supported yet by current SWIG 2 (not even fully previous standard, main missing feature is nested classes)
+      However, upcoming SWIG 3 supports much of C++11
+      http://swig.10945.n7.nabble.com/Swig-2-0-does-not-understand-C-11-trailing-return-type-td13505.html
+
+      Guile: starting with guile 2.0, the guile sources can be compiled for improved performance. This is currently not tested with swig so your mileage may vary.
+
+
+**** Bindings created directly
+
+***** Guile Scheme
+
+      http://www.gnu.org/software/guile/
+
+      - The core idea of Guile Scheme is that "the developer implements critical algorithms and data structures in C or C++ and exports the functions and types for use by interpreted code.
+      - compiler front-ends for ECMAScript (support for Lua is underway) -- your application can be extended in the language (or languages) most appropriate for your user base. 
+
+
+      With Guile macros I can define a powerful domain-specific language for music constraint programming 
+
+      Guile apologetic
+      http://wingolog.org/archives/2011/08/30/the-gnu-extension-language
+      - Guile is an extensible extension language.
+      - Object-oriented programming, but focus is on generic functions
+      - Full numeric tower: integers (of any precision), real numbers, rationals, complex numbers...
+      - ! Geiser Emacs mode: http://www.nongnu.org/geiser/
+       	http://www.gnu.org/software/guile/manual/html_node/Using-Guile-in-Emacs.html#Using-Guile-in-Emacs
+       	- Debugging running programs...
+      - Reflective capabilities
+      - Mature and healthy
+       	https://www.ohloh.net/p/guile
+
+
+****** Integration in my program
+
+     Ideally, with a well-chosen scripting language I can define most of the functionality of the Strasheela successor in that scripting language, at least a first version (later I may move certain parts to C++ for efficiency), but still have basically a C++ application in the end
+     - Easy access to Gecode within a higher-level language
+     - Still resulting application can be embedded in other systems etc.
+     However, with Guile (and probably any other system) I first need to define some (easy) glue 
+     - Mapping functions in scripting lang to functions in C/C++
+     - !! Return values and argument-types of the C procedures need to be of type SCM -- so, I cannot simply use Gecode functions and values!
+
+       In other words
+       - Guile basically supports C only -- C++ is supported, because C programs are also C++ programs
+       - C++ class instances are not directly not supported -- difficult to make good use of Gecode data structures it seems.
+	 There are seemingly ways around (http://lists.gnu.org/archive/html/guile-user/2000-09/msg00026.html), but not sure how suitable that is for my purposes
+
+         But see http://lists.gnu.org/archive/html/guile-user/2000-09/msg00026.html
+         And http://www.swig.org/Doc1.3/Guile.html (perhaps not latest SWIG version)
+
+
+     - ! However, what I can do with Guile is scripting the top-level, as I would with OSC
+       (i.e., no Gecode variables etc seen at scripting level, interface similar perhaps to information controllable by Cluster Engine & Cluster Rules -- minus the ability to define new rules from scratch in the scripting language)
+	 
+
+
+****** Documentation
+
+       Tutorial
+       http://www.gnu.org/software/guile/docs/guile-tut/tutorial.html
+
+       Other tutorial (possibly for older Guile version)
+       http://www.ibm.com/developerworks/linux/library/l-guile/index.html?ca=dgr-lnxw9dGuile&S_TACT=105AGX59&S_CMP=grsitelnxw9d
+
+
+******* Forum discussions
+
+1999
+https://www.sourceware.org/ml/guile/1999-07/msg00331.html
+> I'm interested in using guile as an extension language for
+> programs/libraries written entirely in C++.  Are there any issues with
+> using guile and C++ that go beyond what one has to do to extend guile in C?
+
+I've made a guile interface to a C++ library. The same sort of issues as
+making a C interface. Possible and painful.
+
+       
+
+
+***** ECL (Embeddable Common Lisp) 
+
+      http://ecls.sourceforge.net/
+
+
+      ECL embedded Qt binding (LGPL licensed), embeddable in Qt
+      https://gitorious.org/eql/pages/Home
+
+      Currently has no maintainer, see
+      http://xach.livejournal.com/320045.html
+
+
+****** Torsten: Musing
+
+       There seem to be a reasonable number of users of ECL (e.g., see reviews at http://sourceforge.net/projects/ecls/reviews/), and some traffic at its mailing list
+
+       However, documentation could clearly be better
+       - Reference (http://ecls.sourceforge.net/new-manual/index.html), but seemingly not tutorial
+     
+	 the documentation with respect to embedding is... well... a little bit scarce.
+	 http://ecls.sourceforge.net/new-manual/ch23.html
+
+
+***** Musing -- other otions
+
+****** Comparing options for embedding in C++
+
+       !! 
+       http://martinsprogrammingblog.blogspot.co.uk/2013/01/embedding-new-runtime-into-your-legacy.html
+       - Guile: Quite slow: 
+	 !! Benchmark comparing scheme implementations, Guile particularly slow: http://www.cs.utah.edu/~mflatt/benchmarks-20100126/log3/Benchmarks.html
+	 However, starting with guile 2.0, the guile sources can be compiled for improved performance -- the benchmark uses Guile 1.9.7
+       - Scheme most expressive option compared with other languages
+
+
+       ! Scheme implementations 
+       http://pubby8.wordpress.com/2012/03/22/scheme-with-c/
+       In conclusion, Chibi for lightweight scripting, Gambit for the average embedding in C++, and Bigloo for when you need high performance real-time embedded Scheme. 
+       GNU Guile: oo bloated and too slow
+       -> No evidence for such claims, but perhaps indicative
+
+       http://stackoverflow.com/questions/18267177/which-scheme-implementation-is-easiest-to-embed-into-c-c-program
+       Bigloo supports fully-compiled scheme code. 
+
+
+       
+
+****** Chicken Scheme
+
+       Reasonable performance
+       http://www.cs.utah.edu/~mflatt/benchmarks-20100126/log3/Benchmarks.html
+       
+
+****** Bigloo -- the optimizing Scheme compiler 
+
+       http://www-sop.inria.fr/indes/fp/Bigloo/
+
+       Bigloo is a Scheme implementation devoted to one goal: enabling Scheme based programming style where C(++) is usually required
+
+       - Good performance
+         http://www.cs.utah.edu/~mflatt/benchmarks-20100126/log3/Benchmarks.html
+       - mostly R5RS compliant
+
+
+
+****** Gambit-C (Scheme)
+
+
+****** ? Chibi-Scheme
+
+       Doc
+       http://synthcode.com/scheme/chibi/
+       https://code.google.com/p/chibi-scheme/
+
+
+
+
+****** Lua
+
+http://stackoverflow.com/questions/7919763/lua-vs-embedded-lisp-and-potential-other-candidates-for-set-based-data-processi
+Is very small, both source and binary, an order of magnitude or more smaller than many more popular languages (Python etc). Because the Lua source code is so small and simple, it's perfectly reasonable to just include the entire Lua implementation in your source tree, if you want to avoid adding an external dependency.
+
+Is very fast. The Lua interpreter is much faster than most scripting languages (again, an order of magnitude is not uncommon), and LuaJIT2 is a very good JIT compiler for some popular CPU architectures (x86, arm, mips, ppc). Using LuaJIT can often speed things up by another order of magnitude, and in many cases, the result approaches the speed of C. LuaJIT is also a "drop-in" replacement for standard Lua 5.1: no application or user code changes are required to use it.
+
+Has LPEG. LPEG is a "Parsing Expression Grammar" library for Lua, which allows very easy, powerful, and fast parsing, suitable for both large and small tasks; it's a great replacement for yacc/lex/hairy-regexps. [I wrote a parser using LPEG and LuaJIT, which is much faster than the yacc/lex parser I was trying emulate, and was very easy and straight-forward to create.] LPEG is an add-on package for Lua, but is well-worth getting (it's one source file).
+
+Has a great C-interface, which makes it a pleasure to call Lua from C, or call C from Lua. For interfacing large/complex C++ libraries, one can use SWIG, or any one of a number of interface generators (one can also just use Lua's simple C interface with C++ of course).
+
+Has liberal licensing ("BSD-like"), which means Lua can be embedded in proprietary projects if you wish, and is GPL-compatible for FOSS projects.
+
+Is very, very elegant. It's not lisp, in that it's not based around cons-cells, but it shows clear influences from languages like scheme, with a straight-forward and attractive syntax. Like scheme (at least in it's earlier incarnations), it tends towards "minimal" but does a good job of balancing that with usability. For somebody with a lisp background (like me!), a lot about Lua will seem familiar, and "make sense", despite the differences.
+
+Is very flexible, and such features as metatables allow easily integrating domain-specific types and operations.
+
+Has a simple, attractive, and approachable syntax. This might not be such an advantage over lisp for existing lisp users, but might be relevant if you intend to have end-users write scripts.
+
+Is designed for embedding, and besides its small size and fast speed, has various features such as an incremental GC that make using a scripting language more viable in such contexts.
+
+Has a long history, and responsible and professional developers, who have shown good judgment in how they've evolved the language over the last 2 decades.
+
+Has a vibrant and friendly user-community.
+
+
+* Design Details
+
+** Unit testing
+   
+   *!! General question: using unit testing, or instead ad-hoc testing in a scripting language interface added later?*
+
+*** Choice: which unit testing platform
+
+**** Survey / comparison
+
+     http://gamesfromwithin.com/exploring-the-c-unit-testing-framework-jungle
+
+     https://bitbucket.org/moswald/xunit/wiki/Compare.wiki
+
+     http://en.wikipedia.org/wiki/List_of_unit_testing_frameworks#C.2B.2B
+      
+
+**** CATCH
+
+     http://www.levelofindirection.com/journal/2013/6/28/catch-10.html
+
+     http://www.levelofindirection.com/journal/2011/5/27/unit-testing-in-c-and-objective-c-just-got-ridiculously-easi-1.html
+     http://www.levelofindirection.com/journal/2010/12/28/unit-testing-in-c-and-objective-c-just-got-easier.html
+
+     https://github.com/philsquared/Catch
+
+     Download at http://builds.catch-lib.net/
+     
+     CATCH Forum 
+     http://www.levelofindirection.com/catch-forum/
+     https://groups.google.com/forum/?fromgroups#!forum/catch-forum
+
+      C++98 only mentioned in doc, but tests with C++11 (e.g., initialisation lists) worked fine
+      several people tell me that they tried Catch and found it to be the easiest C++ Unit Test framework they have used.
+
+      Nice and concise 
+      see Tutorial https://github.com/philsquared/Catch/blob/master/docs/tutorial.md
+      Useful naming (BDD-Style test case and section naming, http://dannorth.net/introducing-bdd/)
+      - Test method names should be sentences describing the behaviour in which you are interested (which you want to test)
+      - An expressive test name is helpful when a test fails
+      - “Behaviour” is a more useful word than “test”
+	...
+
+      http://en.wikipedia.org/wiki/Behavior-driven_development
+
+      http://www.ibm.com/developerworks/java/library/j-cq09187/index.html
+
+      http://blog.codeship.io/2013/04/22/from-tdd-to-bdd.html
+
+**** !!!? googletest
+
+     *Current versions of googletest (1.7) and Xcode (5-5.02) not working together?*
+
+     http://code.google.com/p/googletest/
+
+     Doc: wikis for multiple versions at 
+     http://code.google.com/p/googletest/w/list
+
+
+     - based on the popular xUnit architecture
+     - ? When a test fails, Google C++ Testing Framework allows you to run it in isolation for quick debugging. 
+
+     *googletest should be compiled with project to test, to ensure that they share the same compiler flags*
+
+
+***** Reviews 
+
+      https://meekrosoft.wordpress.com/2009/10/04/testing-c-code-with-the-googletest-framework/
+
+***** Using googletest with Xcode
+      
+      Problem with Xcode 5.01 and 5.02
+      At 5.02 runtime error when an ASSERT_foo or EXPECT_foo fails -- Torsten experienced that as well with a test Xcode project that included gtest
+      https://groups.google.com/forum/#!topic/googletestframework/fEgO_g3Ml70
+
+      Demo: Google Test Integration With Xcode
+      Torsten: seems to work, but shows above-mentioned error
+      https://github.com/mattstevens/xcode-googletest
+
+
+****** Others
+
+       Hack to install gtest at =/usr/local/lib=  etc (but that is not recommended, can cause compiler flag inconsistencies) 
+       http://dennycd.me/google-test-xcode-mac-osx/
+
+***** Using googletest with clang and C++11
+
+      Solving compilation problems
+      http://stackoverflow.com/questions/13198712/trouble-building-tests-with-google-test-clang-and-libc
+
+***** Google Test Integration With Xcode XCTest (or OCUnit) test case
+
+      Demo project, but no step-by-step guide how to get there
+      https://groups.google.com/forum/#!topic/googletestframework/nAnosPlo-6Y
+      https://github.com/mattstevens/xcode-googletest
+
+
+**** !!? CxxTest
+
+     *Looks like I may prefer using googletest -- once it works with Xcode again*
+
+     http://cxxtest.com/
+     http://cxxtest.com/guide.html
+
+     section in http://gamesfromwithin.com/exploring-the-c-unit-testing-framework-jungle
+
+***** Reviews and comments
+      
+      http://stackoverflow.com/questions/720838/cxx-test-framework-for-c
+      - CXX is not very active, and writing unit test generally involves a lot of efforts.
+      - CxxTest does not need to be active. Unlike CppUnit, it is complete and simple to use. It's only awkwardness comes from the no <*stream> dependency policy. 
+	
+      from 2005
+      http://www.drdobbs.com/unit-testing-cxxtest/184402043
+
+      https://emou.wordpress.com/2009/10/02/unit-testing-in-c-using-cxxtest/
+     
+
+**** !? UnitTest++
+
+     http://unittest-cpp.sourceforge.net/
+
+     Bare bones doc
+     http://unittest-cpp.sourceforge.net/UnitTest++.html
+
+
+**** !? Boost test library
+
+     http://www.boost.org/doc/libs/1_55_0/libs/test/doc/html/index.html
+
+     section in http://gamesfromwithin.com/exploring-the-c-unit-testing-framework-jungle
+
+
+**** xUnit++							    :ARCHIVE:
+
+     https://bitbucket.org/moswald/xunit/wiki/Home
+
+     Comprehensive, but limited doc
+
+     No clang support 
+     "I would love to support Clang and by extension OS X, but right now Clang 3.1 and 3.2 appear to have bugs when compiling lambdas. I've filed a bug report, and when it is fixed I will do what I can to get Clang up and running as a supported compiler for xUnit++. Until then gcc 4.7+ is the only supported compiler for non-Windows systems."
+     https://bitbucket.org/moswald/xunit/wiki/InstallAndSetup.wiki
+     Torsten: this limitation is likely outdated, not sure whether clang is meanwhile supported, though.
+
+
+
+**** Build into Xcode						    :ARCHIVE:
+
+     *!! command line C++ projects apparently aren't currently supported by XCTest. Testing the C++ code from an Objective-C(++) project works just fine..*
+
+     - XCTest
+     - OCUnit
+       
+     Tighter integration of unit testing into Xcode
+     - test classes assistant
+     - !! Ability to rerun a single test by clicking on the symbol next to the line number (red “x” for a failing test, green checkmark for a passing test).
+       -> A bit like a REPL...
+     - Test Navigator of Xcode 5 with both XCTest and OCUnit, but OCUnit can be "Convert to XCTest"
+
+     Tests are not part of main()  
+
+
+***** TODO Check how portable their tests are
+
+
+
+** Score Output 
+
+*** Fomus: *.fms Files 
+
+    http://fomus.sourceforge.net/
+
+*** JSON
+
+**** Serialising
+     - Textual output of all score data
+     - Quite useful for storage and debugging, if score object data can be fully exported
+
+     Not possible automatically, because C++ misses reflection capabilities. 
+     Can be implemented manually byt "reversing" the constructor definitions of all score objects
+
+     Partly already done:
+     http://jbvsblog.blogspot.fr/2013/12/codeless-json-c-cpp-object-serialization.html
+     http://stackoverflow.com/questions/17549906/c-json-serialization
+
+     There are more projects like this out there -- common problem...
+
+
+**** Parser
+
+
+** SWIG -- issues etc
+
+*** Experience reports of using SWIG
+
+    http://publications.lib.chalmers.se/records/fulltext/143019.pdf
+    - User-defined data types can be a problem -- NOTE: music representation core of Strasheela
+    - Avoid =private= and =protected= sections
+    - Workaround: glue code for SWIG that uses the user-defined data structure, but does not expose it directly to scripting language
+
+
+    http://realmike.org/blog/2010/07/18/python-extensions-in-cpp-using-swig/ (from 2003, updated 2007)
+    - Order of declarations important
+    - Some C++ types (e.g., std::ostream) should be replaced by built-in string and file objects of target language
+      - Solution: remove the declarations of methods with unsuitable args from SWIG file, and other methods that operate on more suitable data types (e.g., string objects). For code examples follow link above...
+    - SWIG *.i files for the std containers (std_string.i, std_vector.i etc.) already exist -- a separate implementation for the different target languages that SWIG supports (!)
+      These are needed to "map" certain types of the target language to std container types 
+      In Python, a std::map can be used like a dict, a std::string like a str, a std::vector like a list, etc.
+      For code examples follow link above...
+    - SWIG refused to generate valid code for a list of pointers -- Torsten: I need that for the Strasheela Successor music representation
+      - Solution:
+	- declaring a typedef for the container with pointers
+	- function for dereferencing various pointers directly in the .i file (as target language cannot dereference pointeres by itself)
+        For code examples follow link above...
+      - !!! Vectors of pointers trickier. I’m still not entirely sure why I gave up on vectors of pointers, but the sad truth is, I couldn’t get them to work
+
+
+    Extending python with C/C++ using SWIG
+    https://github.com/thehackerwithin/PyTrieste/wiki/Swig
+
+
+
+*** SWIG 3 supports C++11, and it is about to be released in Dec 2013
+    
+    See SWIG mailing list exchanges at 
+    http://sourceforge.net/mailarchive/forum.php?thread_name=52BC115E.7000605%40fultondesigns.co.uk&forum_name=swig-devel
+
+    Decision: wait for that, and do plain C++(11) in the meantime. 
+
+
+**** Bleeding edge before release
+
+     I already tried downloading and compiling the unreleased version 3 before the release of SWIG 3, but I could not compile it (by contrast, compiling SWIG 2 went well). The software came without a ready-made =configure= script. I tried creating it with =autoconf=, but got a bunch of error messages
+
+$ autoconf configure.ac > configure
+configure.ac:15: error: possibly undefined macro: AM_INIT_AUTOMAKE
+      If this token and others are legitimate, please use m4_pattern_allow.
+      See the Autoconf documentation.
+configure.ac:33: error: possibly undefined macro: AM_PROG_CC_C_O
+configure.ac:35: error: possibly undefined macro: AC_COMPILE_WARNINGS
+configure.ac:53: error: possibly undefined macro: AC_DEFINE
+configure.ac:69: error: possibly undefined macro: AC_MSG_RESULT
+configure.ac:91: error: possibly undefined macro: AC_MSG_FAILURE
+configure.ac:1487: error: possibly undefined macro: AC_COMPARE_VERSION
+configure.ac:2375: error: possibly undefined macro: AC_DEFINE_DIR
+
+
+*** SWIG Version 2.0.11 cannot deal with new C++11 initialisation lists (e.g., in classes)
+
+    The following code (initialisation of radius with ={r}=) causes swig error
+
+Error: Syntax error in input(3).
+
+#+BEGIN_SRC c
+class Circle {
+  double radius;
+public:
+ Circle(double r) : radius{r} { };
+};
+#+END_SRC c
+   
+
+
+
+** Music Representation -- Reflection
+
+*** Implementations
+
+**** Decision: for now simply use typeid
+
+     Reference: typeid is an operator that returns a type_info 
+     It works dynamically (e.g., only at runtime)
+     http://www.cplusplus.com/reference/typeinfo/type_info/
+
+
+
+     how typeid works?
+     http://www.cplusplus.com/forum/beginner/60044/
+
+
+**** Built-in into C++ -- access to type information
+
+     "C++ offers only the most minimal run-time reflection: dynamic_cast and typeid (Chapter 22). Rely more on compile-time facilities (e.g., compile-time polymorphism; Chapter 27, Chapter 28)."
+     C++ Programming Language, 4th ed. Sec. 1.3.4. 
+
+     dynamic_cast: 
+
+     typeid: (Sec 22.5. Type Identification)
+
+
+**** Reflex
+
+     http://root.cern.ch/drupal/content/reflex
+
+
+**** Qt Meta-object System
+
+     https://en.wikipedia.org/wiki/Meta-object_System
+
+
+**** Inspired by Metaobject Protocol (Gregor Kiczales, Jim des Rivières, Daniel G. Bobrow)
+
+     Article with code examples
+     http://www.vollmann.com/en/pubs/meta/meta/meta.html
+
+
+     OpenC++ (parse and analyze C++ source code)
+     http://opencxx.sourceforge.net/
+     http://en.wikipedia.org/wiki/OpenC%2B%2B_(software_tool)
+
+
+**** Other macro-based solutions 
+     
+     http://www.codeproject.com/Articles/8712/AGM-LibReflection-A-reflection-library-for-C
+
+
+* Gecode Questions 
+
+** Constraints are posted by giving home space -- what about delayed constraint application?
+
+   In music CSP, certain constraints are typically applied/posted only during the search process, because the information required to decide which variables to constrain is not available at the time of the definition of the CSP. For example, if the rhythmic structure is also searched for by the CPS, it can be unknown at the beginning which notes are simultaneous in time, and hence harmonic constraints relating such notes can only be applied/posted later. 
+
+   How can constraint application be delayed if a space much be given as argument to constraints/propagators? In other words, how to find the space where the constraint should be applied/posted? Is that still =*this=? Likely not.
+
+   ! Partial answer: Tutorial Sec 4.5 discusses Synchronized execution: Functions or static member function can wait for a certain variable to be bound, then this function is applied with the current home space as argument. For example, I may way until the start time of some note is bound to apply a function (e.g., to search for simultaneous events).
+
+   See also http://www.gecode.org/doc/4.2.0/reference/group__TaskModelIntExec.html
+
+
+** Variables in space, rest of music data representation outside
+
+    Tutorial section 4.2 discusses proper data structures, which can be updated and hence stored in a space. 
+
+    Is it possible to store variables in some nested data structure (e.g., a music representation based on C++ classes) in such a way that the information stored in that data structure is accessible both in the constraint model and in the definition of branchers? It would be useful if the data structure itself is not stored in spaces, so it is not copied, because it does not change anyway. However, the variables that are part of this representation do change during the search and should therefore be stored in the space. 
+
+    ! Basically, I want to have my data representation (music representation) -- including references to the variables -- outside the space, but the actual variables inside the space. Within a space I would like to be able to use the interface of the data representation, where accessors to variables resolve to the current variable in the space. 
+    
+    Solution described at 
+    http://article.gmane.org/gmane.comp.lib.gecode.user/647/match=data+structure
+    Summary: do not store the actual variables in the data structure, but instead some IDs that allow to identify them in the space (e.g., an index into one or more arrays in the space).
+    Accessors resolve the IDs.
+    
+    Possibly better solution: define copying (=virtual Space* copy(bool share)=) so that only the variables in the music representation are copied, but the rest of the music representation is shared among all spaces.
+    http://article.gmane.org/gmane.comp.lib.gecode.user/644/match=csps+bulky+static+data
+    http://article.gmane.org/gmane.comp.lib.gecode.user/645/match=csps+bulky+static+data
+
+    Guido:
+    You could make use of two mechanisms: either you have the data as static members of your space, or you encapsulate the data in some other object and store a pointer to that object in your space. When copying a space, you merely copy the pointer. If you allocate the object outside the search engine, you do not even need to use reference counting for the data object, just delete it when you're done with search.
+    You won't need any communication infrastructure (like Oz ports) in Gecode, as a space is nothing but a plain C++ object. Just keep your data somewhere and access it "from within the space".
+
+    
+*** TODO Define a little test 
+
+    - Have some object with variables stored inside
+    - Copy only the variables with =virtual Space* copy(bool share)=
+    - Somehow constrain variables and solve CSP
+
+
+* Interactive Testing -- unused
+
+** Plain C++ examples 
+
+#+begin_src cpp :includes <iostream>
+int a=30;
+int b=3;
+// printf("%d\n", a+b);
+std::cout << a+b << "\n";
+#+end_src
+
+#+RESULTS:
+: 33
+
+*** Error: not working
+
+    C++11 syntax is not recognised -- code below works in Xcode..
+
+Problem: my gcc is 4.2.1, which does not yet support C++11
+
+clang: -std=c++11
+gcc: -std=gnu++11 
+
+I changed var org-babel-C++-compiler to "clang++", but that does not change anything
+
+#+begin_src cpp :includes <vector> :flags -std=c++11
+std::vector<int> xs {1, 2, 3};
+
+for (auto x : xs) {
+  cout << x << "\n";
+}
+#+end_src
+
+#+RESULTS:
+

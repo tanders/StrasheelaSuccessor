@@ -1,4 +1,3 @@
-//
 //  ScoreCore_Item.h
 //  MusicRepresentation
 //
@@ -12,7 +11,7 @@
 //// forward declared dependencies
 //// -> Container def should go into its own file, and this declaration at the top of this file.
 class Container;
-class Parameter; // BUG: should not be needed, as Parameter class def is included!
+class Parameter; // TODO: BUG: should not be needed, as Parameter class def is included!
 
 #include "ScoreCore_Parameter.h"
 
@@ -21,12 +20,22 @@ class Parameter; // BUG: should not be needed, as Parameter class def is include
 // http://stackoverflow.com/questions/1429336/cross-referencing-included-headers-in-c-program
 // http://www.cplusplus.com/forum/articles/10627/
 class Item : public ScoreObject {
-    std::vector<Parameter> parameters;
-    Container& container; // backwards reference -- must be reference because otherwise they contain each other indefinitely
-    
+    // Parameter objects stored already elsewhere, therefore only pointers to those params
+    // No smart pointer, because this is only a back-reference to an object cared for elesewhere
+    std::vector<Parameter*> parameters;
+    Container* container; // backwards reference -- must be reference because otherwise they contain each other indefinitely
+    void bilinkContainer(Container*);
+
 public:
     Item(args as);
-    std::vector<Parameter> getParameters(void);
+    std::vector<Parameter*> getParameters(void);
+    Container* getContainer(void);
+
+    void bilinkParameters(std::vector<Parameter*> ps);
+    
+    // TODO: many missing Item functions
+
 };
+
 
 #endif /* defined(__MusicRepresentation__ScoreCore_Item__) */

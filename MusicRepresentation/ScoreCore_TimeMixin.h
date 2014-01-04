@@ -10,21 +10,33 @@
 #define __MusicRepresentation__ScoreCore_TimeMixin__
 
 #include "ScoreCore_TypeArgs.h"
+#include "ScoreCore_Parameter.h"
 
 /**  [abstract class] The TimeMixin adds several timing attributes and methods to its subclasses.
  The instance variables startTime and endTime are absolute TimePoints. The variable offsetTime is a relative TimeInterval, whose meaning depends on the enclosign container (semultaneous or sequential). The variable duration is the TimeInterval difference between startTime and endTime.
  */
 class TimeMixin {
-    int offsetTime, startTime, duration, endTime;
+    TimeInterval offsetTime;
+    TimePoint startTime;
+    TimeInterval duration;
+    TimePoint endTime;
     
 public:
     TimeMixin(args as);
     
-    int getOffsetTime(void) {return offsetTime;};
-    int getStartTime(void) {return startTime;};
-    int getDuration(void) {return duration;};
-    int getEndTime(void) {return endTime;};
+#warning replace int by FD int var (and return reference of those vars?)
+    int getOffsetTime(void) {return offsetTime.getValue();};
+    int getStartTime(void) {return startTime.getValue();};
+    int getDuration(void) {return duration.getValue();};
+    int getEndTime(void) {return endTime.getValue();};
 
+    // return pointer, because I do not want copy of FD int var (and because vector of pointers stored in variable parameters)
+    TimeInterval* getOffsetTimeParameter(void) {return &offsetTime;};
+    TimePoint* getStartTimeParameter(void) {return &startTime;};
+    TimeInterval* getDurationParameter(void) {return &duration;};
+    TimePoint* getEndTimeParameter(void) {return &endTime;};
+    
+    
 #warning TODO: many functions still missing, see Strasheela
     
      

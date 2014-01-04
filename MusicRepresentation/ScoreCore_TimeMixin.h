@@ -22,7 +22,7 @@ class TimeMixin {
     TimePoint endTime;
     
 public:
-    TimeMixin(args as);
+    TimeMixin(Args as);
     
 #warning replace int by FD int var (and return reference of those vars?)
     int getOffsetTime(void) {return offsetTime.getValue();};

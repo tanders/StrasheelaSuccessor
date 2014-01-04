@@ -9,7 +9,7 @@
 #include "ScoreCore_Element.h"
 
 
-Element::Element(args as) :
+Element::Element(Args as) :
 Item{reduceArgsBy(as, std::vector<std::string>{"startTime", "offsetTime", "endTime", "duration"})},
 TimeMixin{reduceArgsBy(as, std::vector<std::string>{"info"})}
 { this->bilinkParameters(std::vector<Parameter*> {

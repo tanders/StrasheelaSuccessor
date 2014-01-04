@@ -14,9 +14,9 @@ using namespace std;
  int value: the parameter value
  string unit: parameter unit of measurement
  
- and args of ScoreObject
+ and Args of ScoreObject
  */
-Parameter::Parameter(args as) :
+Parameter::Parameter(Args as) :
 ScoreObject{reduceArgsBy(as, vector<string>{"value", "unit"})},
 value{extractIntArg(as, "value", 0)},
 unit{extractStringArg(as, "unit", "")}

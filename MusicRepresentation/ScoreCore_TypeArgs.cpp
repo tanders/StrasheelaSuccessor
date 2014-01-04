@@ -13,7 +13,7 @@ using namespace std;
 
 /*******************************************************************************************************/
 //
-// Defining args typ for accessing optional and named arguments for constructors of ScoreObject and subclasses.
+// Defining Args typ for accessing optional and named arguments for constructors of ScoreObject and subclasses.
 //
 /*******************************************************************************************************/
 
@@ -84,9 +84,9 @@ std::vector<ScoreObject> getVectorOfScoreObjectsArg::operator()(ScoreObject& x) 
 //
 /*******************************************************************************************************/
 
-/*! Returns a copy of args map as, reduced by the keys in keys
+/*! Returns a copy of Args map as, reduced by the keys in keys
  */
-args reduceArgsBy(args as, vector<string> keys) {
+Args reduceArgsBy(Args as, vector<string> keys) {
     for(auto key: keys) {
         as.erase(key);
     }
@@ -94,26 +94,26 @@ args reduceArgsBy(args as, vector<string> keys) {
 }
 
 
-/*! Extracts arg named argName from args map as. If not contained in as, then defaultVal is return instead.
+/*! Extracts arg named argName from Args map as. If not contained in as, then defaultVal is return instead.
  */
 // TODO: consider rewriting with type template
-int extractIntArg(args as, string argName, int defaultVal){
+int extractIntArg(Args as, string argName, int defaultVal){
     return as.count(argName) ?
     boost::apply_visitor(getIntArg(), as.at(argName)) :
     defaultVal;
 }
-string extractStringArg(args as, string argName, string defaultVal){
+string extractStringArg(Args as, string argName, string defaultVal){
     return as.count(argName) ?
     boost::apply_visitor(getStringArg(), as.at(argName)) :
     defaultVal;
 }
 // // Before uncommenting again find suitable default value (corresponding to nil)
-//ScoreObject extractScoreObjectArg(args as, string argName){
+//ScoreObject extractScoreObjectArg(Args as, string argName){
 //    return as.count(argName) ?
 //    boost::apply_visitor(getScoreObjectArg(), as.at(argName)) :
 //    void; // is this equivalent of nil?
 //}
-std::vector<ScoreObject> extractVectorOfScoreObjectsArg(args as, string argName){
+std::vector<ScoreObject> extractVectorOfScoreObjectsArg(Args as, string argName){
     return as.count(argName) ?
     boost::apply_visitor(getVectorOfScoreObjectsArg(), as.at(argName)) :
     // empty vector as default (TODO: when/how is this deleted)

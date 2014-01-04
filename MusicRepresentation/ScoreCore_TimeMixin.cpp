@@ -23,18 +23,18 @@ The timeUnit specifies what the numeric values for the values of the parameters 
  
  NB: To avoid confusion, the timeUnit of all temporal items in the score are unified when a score is created.
  */
-TimeMixin::TimeMixin(args as) :
+TimeMixin::TimeMixin(Args as) :
 #warning hardcoded default timeUnit
-offsetTime{TimeInterval {args
+offsetTime{TimeInterval {Args
     {{"value", extractIntArg(as, "offsetTime", 0)},
      {"unit",  extractStringArg(as, "timeUnit", "beats")}}}},
-startTime{TimePoint {args
+startTime{TimePoint {Args
     {{"value", extractIntArg(as, "startTime", 0)},
         {"unit",  extractStringArg(as, "timeUnit", "beats")}}}},
-duration{TimeInterval {args
+duration{TimeInterval {Args
     {{"value", extractIntArg(as, "duration", 0)},
         {"unit",  extractStringArg(as, "timeUnit", "beats")}}}},
-endTime{TimePoint {args
+endTime{TimePoint {Args
     {{"value", extractIntArg(as, "endTime", 0)},
         {"unit",  extractStringArg(as, "timeUnit", "beats")}}}}
 {}

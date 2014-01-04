@@ -15,7 +15,7 @@
 // Simplification of Strasheela: Element is a TemporalElement (only nesting in a tree, no graph)
 class Element : public Item, public TimeMixin {
 public:
-    Element(args as);
+    Element(Args as);
 };
 
 #warning define note etc.

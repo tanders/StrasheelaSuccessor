@@ -64,23 +64,23 @@ class ScoreObject;
 
 /*******************************************************************************************************/
 //
-// Defining args typ for accessing optional and named arguments for constructors of ScoreObject and subclasses.
+// Defining Args typ for accessing optional and named arguments for constructors of ScoreObject and subclasses.
 //
 /*******************************************************************************************************/
 
-// typedef boost::variant<int,std::string> arg;
+// typedef boost::variant<int,std::string> Arg;
 
-/*! \typedef args
+/*! \typedef Args
  
  Shorthand type for argument maps for score object initialisation, which allow for optional and named arguments for constructors of ScoreObject and subclasses. Conveniently create argument map for constructors like
  
- SomeScoreObjectClass x = {args {{"arg1", 42}, {"arg2", "test"}}}
+ SomeScoreObjectClass x = {Args {{"arg1", 42}, {"arg2", "test"}}}
  */
 // boost::variant doc: http://www.boost.org/doc/libs/1_55_0/doc/html/variant.html
-typedef std::map<std::string, boost::variant<int,std::string,ScoreObject,std::vector<ScoreObject>>> args;
+typedef std::map<std::string, boost::variant<int,std::string,ScoreObject,std::vector<ScoreObject>>> Args;
 
 
-/*! Defines compile-time checked accessors for every type given to args (i.e. the values in the map type called args).
+/*! Defines compile-time checked accessors for every type given to Args (i.e. the values in the map type called Args).
  */
 // TODO: consider rewriting with type template
 class getStringArg : public boost::static_visitor<std::string> {
@@ -113,7 +113,7 @@ public:
 };
 
 
-/*! Defines compile-time checked accessors for (i.e. the values in the map type called args).
+/*! Defines compile-time checked accessors for (i.e. the values in the map type called Args).
  */
 // TODO: test and revise
 template <typename T>
@@ -134,12 +134,12 @@ public:
 //
 /*******************************************************************************************************/
 
-args reduceArgsBy(args as, std::vector<std::string> keys);
+Args reduceArgsBy(Args as, std::vector<std::string> keys);
 
-int extractIntArg(args as, std::string argName, int defaultVal);
-std::string extractStringArg(args as, std::string argName, std::string defaultVal);
-//ScoreObject extractScoreObjectArg(args as, std::string argName);
-std::vector<ScoreObject> extractVectorOfScoreObjectsArg(args as, std::string argName);
+int extractIntArg(Args as, std::string argName, int defaultVal);
+std::string extractStringArg(Args as, std::string argName, std::string defaultVal);
+//ScoreObject extractScoreObjectArg(Args as, std::string argName);
+std::vector<ScoreObject> extractVectorOfScoreObjectsArg(Args as, std::string argName);
 
 
 

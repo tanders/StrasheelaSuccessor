@@ -9,8 +9,8 @@
 #include "ScoreCore_Item.h"
 #include "ScoreCore_Container.h"
 
-// New item variables (parameters and container) are not supported as args anyway, so no reduction necessary when forwarding
-Item::Item(args as) :
+// New item variables (parameters and container) are not supported as Args anyway, so no reduction necessary when forwarding
+Item::Item(Args as) :
 ScoreObject{as}
 {}
 

@@ -27,7 +27,7 @@ class Item : public ScoreObject {
     void bilinkContainer(Container*);
 
 public:
-    Item(args as);
+    Item(Args as);
     std::vector<Parameter*> getParameters(void);
     Container* getContainer(void);
 

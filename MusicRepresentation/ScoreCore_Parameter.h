@@ -29,7 +29,7 @@ class Parameter : public ScoreObject {
     // heuristics  // for internal bookkeeping of heuristic constraints
     
 public:
-    Parameter(args as);
+    Parameter(Args as);
     
     int getValue(void);
     std::string getUnit(void);
@@ -57,7 +57,7 @@ public:
 
 class TimeParameter : public Parameter {
 public:
-    TimeParameter(args as) : Parameter{as} {};
+    TimeParameter(Args as) : Parameter{as} {};
 
     float getValueInSeconds(void);
     float getValueInBeats(void);
@@ -65,18 +65,18 @@ public:
 
 class TimePoint : public TimeParameter {
 public:
-    TimePoint(args as) : TimeParameter{as} {};
+    TimePoint(Args as) : TimeParameter{as} {};
 };
 
 class TimeInterval : public TimeParameter {
 public:
-    TimeInterval(args as) : TimeParameter{as} {};
+    TimeInterval(Args as) : TimeParameter{as} {};
 };
 
 
 class Pitch : public Parameter {
 public:
-    Pitch(args as) : Parameter{as} {};
+    Pitch(Args as) : Parameter{as} {};
     float getValueInMidi(void);
     float getValueInMidi(std::map<std::string,int> tuningTable);
 };
@@ -84,7 +84,7 @@ public:
 // Shall I really use this?
 class Amplitude : public Parameter {
 public:
-    Amplitude(args as) : Parameter{as} {};
+    Amplitude(Args as) : Parameter{as} {};
     float getValueNormalized(void);
     float getValueInVelocity(void);
 };

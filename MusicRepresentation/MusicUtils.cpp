@@ -65,6 +65,11 @@ int getPitchesPerOctave(std::string pitchUnit) {
 }
 
 
+/*! Transforms pitch, measured in pitchUnit, into the corresponding "Midi float"
+ 
+ A "Midi float" is a Midi number where positions after the decimal point express microtonal pitch deviations (e.g., 60.5 is middle C raised by a quarter tone). Possible pitch units are "midi: (i.e., 12-TET); "midicent" or "midic" (pitch measured in cent); "frequency", "freq", "Hz" or "hz" (a frequency measured in Hz); "mHz"; and arbitrary equal temperaments notated "et<divisionOfOctave>", e.g., "et31", "et72" etc.
+  */
+// TODO: after adding feature add doc: The transformation takes account a tuning table defined with Init.setTuningTable. Alternatively, a tuning table can be given directly to the optional arg 'table'.
 // Difference to Strasheela: pitchUnit always bound (cannot be empty variable).
 double pitchToMidi(double pitch, std::string pitchUnit) {
 // TODO: Add support for default tuning table

@@ -23,7 +23,7 @@ class Container : public Item, public TimeMixin {
     std::vector<Item> items;
     
 public:
-    Container(args as);
+    Container(Args as);
     std::vector<Item> getItems(void);
     void addItem(Item*);
 

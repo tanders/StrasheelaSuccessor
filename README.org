@@ -1,5 +1,4 @@
-#+TITLE: Strasheela Successor
-#+AUTHOR: Torsten Anders
+* Strasheela Successor
 
 This software is intended to be a better version of [[http://strasheela.sourceforge.net/strasheela/doc/index.html][Strasheela]] at some stage. It is intended to run much faster allowing for realtime use (and is therefore implemented in C++ using [[http://www.gecode.org/][Gecode]]). It is also planned that it can be interfaced from other programming systems (e.g., via OpenSoundControll or/and [[http://swig.org/][SWIG]]. Current plans on the design can be read [[./Strasheela-Successor.org][here]].
 

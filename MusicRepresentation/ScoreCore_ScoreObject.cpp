@@ -10,9 +10,7 @@
 
 using namespace std;
 
-/*! ScoreObject constructor
- 
- Optional/named arguments wrapped in Args map.
+/*! ScoreObject constructor with optional/named arguments wrapped in Args map.
  
  [constructor with map argument for optional/named arguments]
  Args:

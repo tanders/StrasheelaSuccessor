@@ -6,6 +6,10 @@
 //  Copyright (c) 2013 torsten. All rights reserved.
 //
 
+/*! \file ScoreCore_TypeArgs.cpp
+ Defines types and classes which allow to quasi hand optional and named parameters to score object constructors. These parameters are wrapped in a map called Args.
+ */
+
 #include <boost/lexical_cast.hpp>
 #include "ScoreCore_TypeArgs.h"
 
@@ -83,6 +87,7 @@ std::vector<ScoreObject> getVectorOfScoreObjectsArg::operator()(ScoreObject& x) 
 // Aux functions
 //
 /*******************************************************************************************************/
+
 
 /*! Returns a copy of Args map as, reduced by the keys in keys
  */

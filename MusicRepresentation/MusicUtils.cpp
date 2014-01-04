@@ -6,6 +6,10 @@
 //  Copyright (c) 2014 torsten. All rights reserved.
 //
 
+/*! \file MusicUtils.cpp
+This file defines some utilities which are related to music or acoustics.
+ */
+
 // http://www.cplusplus.com/reference/cmath/
 //#include <cmath>
 #include <math.h>

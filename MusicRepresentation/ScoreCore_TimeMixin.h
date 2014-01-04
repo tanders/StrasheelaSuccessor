@@ -13,7 +13,6 @@
 #include "ScoreCore_Parameter.h"
 
 /*!  [abstract class] The TimeMixin adds several timing attributes and methods to its subclasses.
- The instance variables startTime and endTime are absolute TimePoints. The variable offsetTime is a relative TimeInterval, whose meaning depends on the enclosign container (semultaneous or sequential). The variable duration is the TimeInterval difference between startTime and endTime.
  */
 class TimeMixin {
     TimeInterval offsetTime;

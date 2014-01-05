@@ -80,6 +80,7 @@ typedef std::map<std::string, boost::variant<int,std::string,ScoreObject,std::ve
  
  \sa The constructors of ScoreObject and its subclasses.
  */
+// Doc after typedef, because doxygen otherwise ignored it -- strange.
 
 
 /*! Defines compile-time checked accessors for every type given to Args (i.e. the values in the map type called Args).

@@ -89,7 +89,7 @@ std::vector<ScoreObject> getVectorOfScoreObjectsArg::operator()(ScoreObject& x) 
 /*******************************************************************************************************/
 
 
-/*! Returns a copy of Args map as, reduced by the keys in keys
+/*! Returns a copy of Args map as, reduced by the keys in keys. Any key not existing in Args as is ignored.
  */
 Args reduceArgsBy(Args as, vector<string> keys) {
     for(auto key: keys) {

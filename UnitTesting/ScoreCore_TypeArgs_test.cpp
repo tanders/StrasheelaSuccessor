@@ -3,6 +3,21 @@
 #include "ScoreCore_TypeArgs.h"
 #include "ScoreCore_Item.h"
 
+/// Simple construction and printing tests
+/*
+    vector<string> args1 {"arg1", "x", "arg2", "y"};
+
+    for_each(args1.begin(), args1.end(), [](string s){
+        cout << s << "\n";
+    });
+
+    Args args2 {{"arg1", "x"}, {"arg2", "y"}};
+    for(auto x: args2)
+        std::cout << x.first << ": " << x.second << '\n';
+
+    for(auto x: Args {{"arg1", 42}, {"arg2", "test"}})
+        std::cout << x.first << ": " << x.second << '\n';
+*/
 
 SCENARIO( "type Args wraps named arguments of various types savely in a map", "[Args][ScoreCore]" ) {
 
@@ -39,8 +54,9 @@ SCENARIO( "type Args wraps named arguments of various types savely in a map", "[
             REQUIRE( reduceArgsBy(myArgs, std::vector<std::string> {"vectorOfItems_args1"}).size() == 2 );
             // removing all keys results in empty vector
             REQUIRE( reduceArgsBy(myArgs, std::vector<std::string> {"string_arg1", "int_arg1", "vectorOfItems_args1"}).empty() == true );
-            // reducing by non-existing key
-            REQUIRE_THROWS( reduceArgsBy(myArgs, std::vector<std::string> {"noArg"}).empty() );
+            // Any key not existing in myArgs is ignored.
+            // TODO: once I have == operators overloaded for ScoreObjects, I could test whether result of reduceArgsBy is same as myArgs
+            REQUIRE( reduceArgsBy(myArgs, std::vector<std::string> {"noArg"}).size() == 3 );
 
         }
         

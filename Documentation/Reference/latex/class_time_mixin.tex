@@ -1,0 +1,134 @@
+\hypertarget{class_time_mixin}{\section{Time\-Mixin Class Reference}
+\label{class_time_mixin}\index{Time\-Mixin@{Time\-Mixin}}
+}
+
+
+{\ttfamily \#include $<$Score\-Core\-\_\-\-Time\-Mixin.\-h$>$}
+
+
+
+Inheritance diagram for Time\-Mixin\-:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=257pt]{class_time_mixin__inherit__graph}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{class_time_mixin_ae9f2a45403a3822b0b41438735ef2bda}{Time\-Mixin} (\hyperlink{_score_core___score_object_8h_ab88aad89d974920ebfb0b0c9e46f61b4}{Args} as)
+\item 
+int \hyperlink{class_time_mixin_af90ab98a0d498f1e8f233a5d61b07379}{get\-Offset\-Time} (void)
+\item 
+int \hyperlink{class_time_mixin_a2005478aaa21c3f1603f52b7e9b30cd1}{get\-Start\-Time} (void)
+\item 
+int \hyperlink{class_time_mixin_af15fb388c632cef74b8454353c202a7e}{get\-Duration} (void)
+\item 
+int \hyperlink{class_time_mixin_a3704937133fcbc65923fa18089851ccb}{get\-End\-Time} (void)
+\item 
+\hyperlink{class_time_interval}{Time\-Interval} $\ast$ \hyperlink{class_time_mixin_a078eae46f09af52e60655b6beeda638b}{get\-Offset\-Time\-Parameter} (void)
+\item 
+\hyperlink{class_time_point}{Time\-Point} $\ast$ \hyperlink{class_time_mixin_adaa5430a2d698f3a353fa4f5e2ed6d9d}{get\-Start\-Time\-Parameter} (void)
+\item 
+\hyperlink{class_time_interval}{Time\-Interval} $\ast$ \hyperlink{class_time_mixin_aae885e98ca603718ff58d8eb5eb67918}{get\-Duration\-Parameter} (void)
+\item 
+\hyperlink{class_time_point}{Time\-Point} $\ast$ \hyperlink{class_time_mixin_a52f6b9d308cb3336c28e2053d0ac6004}{get\-End\-Time\-Parameter} (void)
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+\mbox{[}abstract class\mbox{]} The \hyperlink{class_time_mixin}{Time\-Mixin} adds several timing attributes and methods to its subclasses. 
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{class_time_mixin_ae9f2a45403a3822b0b41438735ef2bda}{\index{Time\-Mixin@{Time\-Mixin}!Time\-Mixin@{Time\-Mixin}}
+\index{Time\-Mixin@{Time\-Mixin}!TimeMixin@{Time\-Mixin}}
+\subsubsection[{Time\-Mixin}]{\setlength{\rightskip}{0pt plus 5cm}Time\-Mixin\-::\-Time\-Mixin (
+\begin{DoxyParamCaption}
+\item[{{\bf Args}}]{as}
+\end{DoxyParamCaption}
+)}}\label{class_time_mixin_ae9f2a45403a3822b0b41438735ef2bda}
+\hyperlink{class_time_mixin}{Time\-Mixin} Constructor.
+
+The Args map (later all these ints are replaced by Gecode\-::\-Int\-Var) 
+\begin{DoxyParams}{Parameters}
+{\em int} & offset\-Time \\
+\hline
+{\em int} & start\-Time \\
+\hline
+{\em int} & duration \\
+\hline
+{\em int} & end\-Time \\
+\hline
+{\em string} & time\-Unit\\
+\hline
+\end{DoxyParams}
+The instance variables start\-Time and end\-Time are absolute Time\-Points. The variable offset\-Time is a relative \hyperlink{class_time_interval}{Time\-Interval}, whose meaning depends on the enclosign container (semultaneous or sequential). The variable duration is the \hyperlink{class_time_interval}{Time\-Interval} difference between start\-Time and end\-Time.
+
+The time\-Unit specifies what the numeric values for the values of the parameters like start\-Time and end\-Time actually mean. The time\-Unit either specifies an absolute value (e.\-g., \char`\"{}seconds\char`\"{}) or a relative value (e.\-g., \char`\"{}beats\char`\"{}). The meaning of a beat depends on the output definition. For instance, it may mean a quarter note. T\-O\-D\-O\-: update doc -- this is still the Strasheela doc, until these value conversions are actually implemented Currently, possible values are 'seconds' (or 'secs'), 'milliseconds' (or 'msecs'), 'beats', or beats(\-N), where N means number of ticks (i.\-e. the integer range) within a beat. For example, if the time\-Unit = beats(4) and a beat corresponds to a quarter note, then a note of duration 1 corresponds to a sixteenth note. beats is equivalent with beats(1). The meaning of a beat for sound output can be specified by the tempo (see Init.\-set\-Beat\-Duration, Init.\-set\-Tempo etc.)
+
+N\-B\-: To avoid confusion, the time\-Unit of all temporal items in the score are unified when a score is created. 
+
+\subsection{Member Function Documentation}
+\hypertarget{class_time_mixin_af15fb388c632cef74b8454353c202a7e}{\index{Time\-Mixin@{Time\-Mixin}!get\-Duration@{get\-Duration}}
+\index{get\-Duration@{get\-Duration}!TimeMixin@{Time\-Mixin}}
+\subsubsection[{get\-Duration}]{\setlength{\rightskip}{0pt plus 5cm}int Time\-Mixin\-::get\-Duration (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{class_time_mixin_af15fb388c632cef74b8454353c202a7e}
+\hypertarget{class_time_mixin_aae885e98ca603718ff58d8eb5eb67918}{\index{Time\-Mixin@{Time\-Mixin}!get\-Duration\-Parameter@{get\-Duration\-Parameter}}
+\index{get\-Duration\-Parameter@{get\-Duration\-Parameter}!TimeMixin@{Time\-Mixin}}
+\subsubsection[{get\-Duration\-Parameter}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Time\-Interval}$\ast$ Time\-Mixin\-::get\-Duration\-Parameter (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{class_time_mixin_aae885e98ca603718ff58d8eb5eb67918}
+\hypertarget{class_time_mixin_a3704937133fcbc65923fa18089851ccb}{\index{Time\-Mixin@{Time\-Mixin}!get\-End\-Time@{get\-End\-Time}}
+\index{get\-End\-Time@{get\-End\-Time}!TimeMixin@{Time\-Mixin}}
+\subsubsection[{get\-End\-Time}]{\setlength{\rightskip}{0pt plus 5cm}int Time\-Mixin\-::get\-End\-Time (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{class_time_mixin_a3704937133fcbc65923fa18089851ccb}
+\hypertarget{class_time_mixin_a52f6b9d308cb3336c28e2053d0ac6004}{\index{Time\-Mixin@{Time\-Mixin}!get\-End\-Time\-Parameter@{get\-End\-Time\-Parameter}}
+\index{get\-End\-Time\-Parameter@{get\-End\-Time\-Parameter}!TimeMixin@{Time\-Mixin}}
+\subsubsection[{get\-End\-Time\-Parameter}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Time\-Point}$\ast$ Time\-Mixin\-::get\-End\-Time\-Parameter (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{class_time_mixin_a52f6b9d308cb3336c28e2053d0ac6004}
+\hypertarget{class_time_mixin_af90ab98a0d498f1e8f233a5d61b07379}{\index{Time\-Mixin@{Time\-Mixin}!get\-Offset\-Time@{get\-Offset\-Time}}
+\index{get\-Offset\-Time@{get\-Offset\-Time}!TimeMixin@{Time\-Mixin}}
+\subsubsection[{get\-Offset\-Time}]{\setlength{\rightskip}{0pt plus 5cm}int Time\-Mixin\-::get\-Offset\-Time (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{class_time_mixin_af90ab98a0d498f1e8f233a5d61b07379}
+\hypertarget{class_time_mixin_a078eae46f09af52e60655b6beeda638b}{\index{Time\-Mixin@{Time\-Mixin}!get\-Offset\-Time\-Parameter@{get\-Offset\-Time\-Parameter}}
+\index{get\-Offset\-Time\-Parameter@{get\-Offset\-Time\-Parameter}!TimeMixin@{Time\-Mixin}}
+\subsubsection[{get\-Offset\-Time\-Parameter}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Time\-Interval}$\ast$ Time\-Mixin\-::get\-Offset\-Time\-Parameter (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{class_time_mixin_a078eae46f09af52e60655b6beeda638b}
+\hypertarget{class_time_mixin_a2005478aaa21c3f1603f52b7e9b30cd1}{\index{Time\-Mixin@{Time\-Mixin}!get\-Start\-Time@{get\-Start\-Time}}
+\index{get\-Start\-Time@{get\-Start\-Time}!TimeMixin@{Time\-Mixin}}
+\subsubsection[{get\-Start\-Time}]{\setlength{\rightskip}{0pt plus 5cm}int Time\-Mixin\-::get\-Start\-Time (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{class_time_mixin_a2005478aaa21c3f1603f52b7e9b30cd1}
+\hypertarget{class_time_mixin_adaa5430a2d698f3a353fa4f5e2ed6d9d}{\index{Time\-Mixin@{Time\-Mixin}!get\-Start\-Time\-Parameter@{get\-Start\-Time\-Parameter}}
+\index{get\-Start\-Time\-Parameter@{get\-Start\-Time\-Parameter}!TimeMixin@{Time\-Mixin}}
+\subsubsection[{get\-Start\-Time\-Parameter}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Time\-Point}$\ast$ Time\-Mixin\-::get\-Start\-Time\-Parameter (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{class_time_mixin_adaa5430a2d698f3a353fa4f5e2ed6d9d}
+
+
+The documentation for this class was generated from the following files\-:\begin{DoxyCompactItemize}
+\item 
+Music\-Representation/\hyperlink{_score_core___time_mixin_8h}{Score\-Core\-\_\-\-Time\-Mixin.\-h}\item 
+Music\-Representation/\hyperlink{_score_core___time_mixin_8cpp}{Score\-Core\-\_\-\-Time\-Mixin.\-cpp}\end{DoxyCompactItemize}

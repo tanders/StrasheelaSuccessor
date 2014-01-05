@@ -1,0 +1,50 @@
+\hypertarget{class_sequential}{\section{Sequential Class Reference}
+\label{class_sequential}\index{Sequential@{Sequential}}
+}
+
+
+{\ttfamily \#include $<$Score\-Core\-\_\-\-Container.\-h$>$}
+
+
+
+Inheritance diagram for Sequential\-:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=214pt]{class_sequential__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Sequential\-:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=214pt]{class_sequential__coll__graph}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{class_sequential_aad0311a6dcb3f90c6dd5a397e3fbb7d0}{constrain\-Timing} (void)
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+\mbox{[}concrete class\mbox{]} A \hyperlink{class_sequential}{Sequential} expresses that the items contained in it follow each other in a sequential manner in time.
+
+T\-O\-D\-O\-: revise orig Strasheela doc Usually, the parameter end\-Time of a proceeding item equals the parameter start\-Time of the following item. However, setting the parameter offset\-Time of an item to a value greater zero causes a gap (i.\-e. a pause) before the item and a negative offset\-Time causes an overlap with the proceeding item. For a documentation of the time unit see doc of \hyperlink{class_time_mixin}{Time\-Mixin}. N\-B\-: A negative offset\-Time value is not possible if the offset\-Time is a F\-D integer (which presently is the only option). 
+
+\subsection{Member Function Documentation}
+\hypertarget{class_sequential_aad0311a6dcb3f90c6dd5a397e3fbb7d0}{\index{Sequential@{Sequential}!constrain\-Timing@{constrain\-Timing}}
+\index{constrain\-Timing@{constrain\-Timing}!Sequential@{Sequential}}
+\subsubsection[{constrain\-Timing}]{\setlength{\rightskip}{0pt plus 5cm}void Sequential\-::constrain\-Timing (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)}}\label{class_sequential_aad0311a6dcb3f90c6dd5a397e3fbb7d0}
+
+
+The documentation for this class was generated from the following file\-:\begin{DoxyCompactItemize}
+\item 
+Music\-Representation/\hyperlink{_score_core___container_8h}{Score\-Core\-\_\-\-Container.\-h}\end{DoxyCompactItemize}

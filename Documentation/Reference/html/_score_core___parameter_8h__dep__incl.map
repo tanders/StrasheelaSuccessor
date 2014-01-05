@@ -1,0 +1,12 @@
+<map id="MusicRepresentation/ScoreCore_Parameter.h" name="MusicRepresentation/ScoreCore_Parameter.h">
+<area shape="rect" id="node2" href="$_score_core___time_mixin_8h.html" title="MusicRepresentation\l/ScoreCore_TimeMixin.h" alt="" coords="206,97,375,138"/>
+<area shape="rect" id="node10" href="$_score_core___item_8h.html" title="MusicRepresentation\l/ScoreCore_Item.h" alt="" coords="401,97,548,138"/>
+<area shape="rect" id="node11" href="$_score_core___parameter_8cpp.html" title="MusicRepresentation\l/ScoreCore_Parameter.cpp" alt="" coords="572,97,756,138"/>
+<area shape="rect" id="node3" href="$_score_core___element_8h.html" title="MusicRepresentation\l/ScoreCore_Element.h" alt="" coords="212,187,369,229"/>
+<area shape="rect" id="node6" href="$_score_core___container_8h.html" title="MusicRepresentation\l/ScoreCore_Container.h" alt="" coords="393,187,559,229"/>
+<area shape="rect" id="node9" href="$_score_core___time_mixin_8cpp.html" title="MusicRepresentation\l/ScoreCore_TimeMixin.cpp" alt="" coords="5,187,187,229"/>
+<area shape="rect" id="node4" href="$main_8cpp.html" title="MusicRepresentation\l/main.cpp" alt="" coords="20,278,167,319"/>
+<area shape="rect" id="node5" href="$_score_core___element_8cpp.html" title="MusicRepresentation\l/ScoreCore_Element.cpp" alt="" coords="191,278,361,319"/>
+<area shape="rect" id="node7" href="$_score_core___container_8cpp.html" title="MusicRepresentation\l/ScoreCore_Container.cpp" alt="" coords="386,278,565,319"/>
+<area shape="rect" id="node8" href="$_score_core___item_8cpp.html" title="MusicRepresentation\l/ScoreCore_Item.cpp" alt="" coords="590,278,737,319"/>
+</map>

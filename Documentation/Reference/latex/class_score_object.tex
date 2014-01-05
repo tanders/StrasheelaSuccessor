@@ -1,0 +1,72 @@
+\hypertarget{class_score_object}{\section{Score\-Object Class Reference}
+\label{class_score_object}\index{Score\-Object@{Score\-Object}}
+}
+
+
+{\ttfamily \#include $<$Score\-Core\-\_\-\-Score\-Object.\-h$>$}
+
+
+
+Inheritance diagram for Score\-Object\-:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_score_object__inherit__graph}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{class_score_object_a5d48b3ff7db868ad8d18716971d2e7c0}{Score\-Object} (\hyperlink{_score_core___score_object_8h_ab88aad89d974920ebfb0b0c9e46f61b4}{Args} as)
+\item 
+std\-::vector$<$ std\-::string $>$ \hyperlink{class_score_object_a10003206c88edf43e25180ddd06b8ad9}{get\-Info} (void)
+\item 
+void \hyperlink{class_score_object_a89b5be30134e8d77dbe1c253bc009b08}{add\-Info} (std\-::string my\-Info)
+\item 
+bool \hyperlink{class_score_object_a2625bd41018f22bcb9a64e2664cb9908}{has\-This\-Info} (std\-::string my\-Info)
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+\mbox{[}abstract class\mbox{]} The most general data type for score data is a \hyperlink{class_score_object}{Score\-Object}. 
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{class_score_object_a5d48b3ff7db868ad8d18716971d2e7c0}{\index{Score\-Object@{Score\-Object}!Score\-Object@{Score\-Object}}
+\index{Score\-Object@{Score\-Object}!ScoreObject@{Score\-Object}}
+\subsubsection[{Score\-Object}]{\setlength{\rightskip}{0pt plus 5cm}Score\-Object\-::\-Score\-Object (
+\begin{DoxyParamCaption}
+\item[{{\bf Args}}]{as}
+\end{DoxyParamCaption}
+)}}\label{class_score_object_a5d48b3ff7db868ad8d18716971d2e7c0}
+\hyperlink{class_score_object}{Score\-Object} constructor with optional/named arguments wrapped in Args map.
+
+\mbox{[}constructor with map argument for optional/named arguments\mbox{]} Args\-: string info\-: arbitrary user information for this score object (additional infos can be added with nmember function add\-Info) 
+
+\subsection{Member Function Documentation}
+\hypertarget{class_score_object_a89b5be30134e8d77dbe1c253bc009b08}{\index{Score\-Object@{Score\-Object}!add\-Info@{add\-Info}}
+\index{add\-Info@{add\-Info}!ScoreObject@{Score\-Object}}
+\subsubsection[{add\-Info}]{\setlength{\rightskip}{0pt plus 5cm}void Score\-Object\-::add\-Info (
+\begin{DoxyParamCaption}
+\item[{std\-::string}]{my\-Info}
+\end{DoxyParamCaption}
+)}}\label{class_score_object_a89b5be30134e8d77dbe1c253bc009b08}
+\mbox{[}destructive method\mbox{]} Adds my\-Info to vector of stored infos. The internal vector info can store arbitrary user information. \hypertarget{class_score_object_a10003206c88edf43e25180ddd06b8ad9}{\index{Score\-Object@{Score\-Object}!get\-Info@{get\-Info}}
+\index{get\-Info@{get\-Info}!ScoreObject@{Score\-Object}}
+\subsubsection[{get\-Info}]{\setlength{\rightskip}{0pt plus 5cm}vector$<$ string $>$ Score\-Object\-::get\-Info (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)}}\label{class_score_object_a10003206c88edf43e25180ddd06b8ad9}
+Returns vectors of all info strings stored. \hypertarget{class_score_object_a2625bd41018f22bcb9a64e2664cb9908}{\index{Score\-Object@{Score\-Object}!has\-This\-Info@{has\-This\-Info}}
+\index{has\-This\-Info@{has\-This\-Info}!ScoreObject@{Score\-Object}}
+\subsubsection[{has\-This\-Info}]{\setlength{\rightskip}{0pt plus 5cm}bool Score\-Object\-::has\-This\-Info (
+\begin{DoxyParamCaption}
+\item[{std\-::string}]{my\-Info}
+\end{DoxyParamCaption}
+)}}\label{class_score_object_a2625bd41018f22bcb9a64e2664cb9908}
+Returns bool whether my\-Info is stored as an info in the object. 
+
+The documentation for this class was generated from the following files\-:\begin{DoxyCompactItemize}
+\item 
+Music\-Representation/\hyperlink{_score_core___score_object_8h}{Score\-Core\-\_\-\-Score\-Object.\-h}\item 
+Music\-Representation/\hyperlink{_score_core___score_object_8cpp}{Score\-Core\-\_\-\-Score\-Object.\-cpp}\end{DoxyCompactItemize}

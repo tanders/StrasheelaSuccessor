@@ -1,0 +1,107 @@
+\hypertarget{_score_core___type_args_8h}{\section{Music\-Representation/\-Score\-Core\-\_\-\-Type\-Args.h File Reference}
+\label{_score_core___type_args_8h}\index{Music\-Representation/\-Score\-Core\-\_\-\-Type\-Args.\-h@{Music\-Representation/\-Score\-Core\-\_\-\-Type\-Args.\-h}}
+}
+{\ttfamily \#include $<$map$>$}\\*
+{\ttfamily \#include $<$vector$>$}\\*
+{\ttfamily \#include $<$boost/variant.\-hpp$>$}\\*
+{\ttfamily \#include \char`\"{}Score\-Core\-\_\-\-Score\-Object.\-h\char`\"{}}\\*
+Include dependency graph for Score\-Core\-\_\-\-Type\-Args.\-h\-:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=342pt]{_score_core___type_args_8h__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file\-:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_score_core___type_args_8h__dep__incl}
+\end{center}
+\end{figure}
+\subsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \hyperlink{classget_string_arg}{get\-String\-Arg}
+\item 
+class \hyperlink{classget_int_arg}{get\-Int\-Arg}
+\item 
+class \hyperlink{classget_score_object_arg}{get\-Score\-Object\-Arg}
+\item 
+class \hyperlink{classget_vector_of_score_objects_arg}{get\-Vector\-Of\-Score\-Objects\-Arg}
+\item 
+class \hyperlink{classget_arg}{get\-Arg$<$ T $>$}
+\end{DoxyCompactItemize}
+\subsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef std\-::map$<$ std\-::string, \\*
+boost\-::variant$<$ int, \\*
+std\-::string, \hyperlink{class_score_object}{Score\-Object}, \\*
+std\-::vector$<$ \hyperlink{class_score_object}{Score\-Object} $>$ $>$ $>$ \hyperlink{_score_core___type_args_8h_ab88aad89d974920ebfb0b0c9e46f61b4}{Args}
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{_score_core___score_object_8h_ab88aad89d974920ebfb0b0c9e46f61b4}{Args} \hyperlink{_score_core___type_args_8h_a91b0ccfcc279cb0c6f2ba3b5a7c168b6}{reduce\-Args\-By} (\hyperlink{_score_core___score_object_8h_ab88aad89d974920ebfb0b0c9e46f61b4}{Args} as, std\-::vector$<$ std\-::string $>$ keys)
+\item 
+int \hyperlink{_score_core___type_args_8h_a935c216d448f8666d9675ab0a57f0afb}{extract\-Int\-Arg} (\hyperlink{_score_core___score_object_8h_ab88aad89d974920ebfb0b0c9e46f61b4}{Args} as, std\-::string arg\-Name, int default\-Val)
+\item 
+std\-::string \hyperlink{_score_core___type_args_8h_ad43ee7ead79eb9393c5ad9e3656dcc88}{extract\-String\-Arg} (\hyperlink{_score_core___score_object_8h_ab88aad89d974920ebfb0b0c9e46f61b4}{Args} as, std\-::string arg\-Name, std\-::string default\-Val)
+\item 
+std\-::vector$<$ \hyperlink{class_score_object}{Score\-Object} $>$ \hyperlink{_score_core___type_args_8h_a85a0948e38d5c074c4ff102a47632468}{extract\-Vector\-Of\-Score\-Objects\-Arg} (\hyperlink{_score_core___score_object_8h_ab88aad89d974920ebfb0b0c9e46f61b4}{Args} as, std\-::string arg\-Name)
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Defines types and classes which allow to quasi hand optional and named parameters to score object constructors. These parameters are wrapped in a map called Args. 
+
+\subsection{Typedef Documentation}
+\hypertarget{_score_core___type_args_8h_ab88aad89d974920ebfb0b0c9e46f61b4}{\index{Score\-Core\-\_\-\-Type\-Args.\-h@{Score\-Core\-\_\-\-Type\-Args.\-h}!Args@{Args}}
+\index{Args@{Args}!ScoreCore_TypeArgs.h@{Score\-Core\-\_\-\-Type\-Args.\-h}}
+\subsubsection[{Args}]{\setlength{\rightskip}{0pt plus 5cm}typedef std\-::map$<$std\-::string, boost\-::variant$<$int,std\-::string,{\bf Score\-Object},std\-::vector$<${\bf Score\-Object}$>$ $>$ $>$ {\bf Args}}}\label{_score_core___type_args_8h_ab88aad89d974920ebfb0b0c9e46f61b4}
+Shorthand type for argument maps for score object constructors. This type effectively allows for optional and named arguments for constructors of \hyperlink{class_score_object}{Score\-Object} and subclasses. You can conveniently create such named arguments like
+
+Some\-Score\-Object\-Class x = \{Args \{\{\char`\"{}arg1\char`\"{}, 42\}, \{\char`\"{}arg2\char`\"{}, \char`\"{}test\char`\"{}\}\}\}
+
+\begin{DoxySeeAlso}{See Also}
+The constructors of \hyperlink{class_score_object}{Score\-Object} and its subclasses. 
+\end{DoxySeeAlso}
+
+
+\subsection{Function Documentation}
+\hypertarget{_score_core___type_args_8h_a935c216d448f8666d9675ab0a57f0afb}{\index{Score\-Core\-\_\-\-Type\-Args.\-h@{Score\-Core\-\_\-\-Type\-Args.\-h}!extract\-Int\-Arg@{extract\-Int\-Arg}}
+\index{extract\-Int\-Arg@{extract\-Int\-Arg}!ScoreCore_TypeArgs.h@{Score\-Core\-\_\-\-Type\-Args.\-h}}
+\subsubsection[{extract\-Int\-Arg}]{\setlength{\rightskip}{0pt plus 5cm}int extract\-Int\-Arg (
+\begin{DoxyParamCaption}
+\item[{{\bf Args}}]{as, }
+\item[{std\-::string}]{arg\-Name, }
+\item[{int}]{default\-Val}
+\end{DoxyParamCaption}
+)}}\label{_score_core___type_args_8h_a935c216d448f8666d9675ab0a57f0afb}
+Extracts arg named arg\-Name from Args map as. If not contained in as, then default\-Val is return instead. \hypertarget{_score_core___type_args_8h_ad43ee7ead79eb9393c5ad9e3656dcc88}{\index{Score\-Core\-\_\-\-Type\-Args.\-h@{Score\-Core\-\_\-\-Type\-Args.\-h}!extract\-String\-Arg@{extract\-String\-Arg}}
+\index{extract\-String\-Arg@{extract\-String\-Arg}!ScoreCore_TypeArgs.h@{Score\-Core\-\_\-\-Type\-Args.\-h}}
+\subsubsection[{extract\-String\-Arg}]{\setlength{\rightskip}{0pt plus 5cm}std\-::string extract\-String\-Arg (
+\begin{DoxyParamCaption}
+\item[{{\bf Args}}]{as, }
+\item[{std\-::string}]{arg\-Name, }
+\item[{std\-::string}]{default\-Val}
+\end{DoxyParamCaption}
+)}}\label{_score_core___type_args_8h_ad43ee7ead79eb9393c5ad9e3656dcc88}
+\hypertarget{_score_core___type_args_8h_a85a0948e38d5c074c4ff102a47632468}{\index{Score\-Core\-\_\-\-Type\-Args.\-h@{Score\-Core\-\_\-\-Type\-Args.\-h}!extract\-Vector\-Of\-Score\-Objects\-Arg@{extract\-Vector\-Of\-Score\-Objects\-Arg}}
+\index{extract\-Vector\-Of\-Score\-Objects\-Arg@{extract\-Vector\-Of\-Score\-Objects\-Arg}!ScoreCore_TypeArgs.h@{Score\-Core\-\_\-\-Type\-Args.\-h}}
+\subsubsection[{extract\-Vector\-Of\-Score\-Objects\-Arg}]{\setlength{\rightskip}{0pt plus 5cm}std\-::vector$<${\bf Score\-Object}$>$ extract\-Vector\-Of\-Score\-Objects\-Arg (
+\begin{DoxyParamCaption}
+\item[{{\bf Args}}]{as, }
+\item[{std\-::string}]{arg\-Name}
+\end{DoxyParamCaption}
+)}}\label{_score_core___type_args_8h_a85a0948e38d5c074c4ff102a47632468}
+\hypertarget{_score_core___type_args_8h_a91b0ccfcc279cb0c6f2ba3b5a7c168b6}{\index{Score\-Core\-\_\-\-Type\-Args.\-h@{Score\-Core\-\_\-\-Type\-Args.\-h}!reduce\-Args\-By@{reduce\-Args\-By}}
+\index{reduce\-Args\-By@{reduce\-Args\-By}!ScoreCore_TypeArgs.h@{Score\-Core\-\_\-\-Type\-Args.\-h}}
+\subsubsection[{reduce\-Args\-By}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Args} reduce\-Args\-By (
+\begin{DoxyParamCaption}
+\item[{{\bf Args}}]{as, }
+\item[{std\-::vector$<$ std\-::string $>$}]{keys}
+\end{DoxyParamCaption}
+)}}\label{_score_core___type_args_8h_a91b0ccfcc279cb0c6f2ba3b5a7c168b6}
+Returns a copy of Args map as, reduced by the keys in keys 

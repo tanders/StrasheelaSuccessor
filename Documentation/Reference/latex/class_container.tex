@@ -1,0 +1,89 @@
+\hypertarget{class_container}{\section{Container Class Reference}
+\label{class_container}\index{Container@{Container}}
+}
+
+
+{\ttfamily \#include $<$Score\-Core\-\_\-\-Container.\-h$>$}
+
+
+
+Inheritance diagram for Container\-:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=239pt]{class_container__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Container\-:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=214pt]{class_container__coll__graph}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{class_container_a58fe89314bc5e01d5f0a9b3b657c6b7d}{Container} (\hyperlink{_score_core___score_object_8h_ab88aad89d974920ebfb0b0c9e46f61b4}{Args} as)
+\item 
+std\-::vector$<$ \hyperlink{class_item}{Item} $>$ \hyperlink{class_container_a52e94ab27524bea68a6a9dd1646fa316}{get\-Items} (void)
+\item 
+void \hyperlink{class_container_a0de45ee721e564ecf487f2f042b9c554}{add\-Item} (\hyperlink{class_item}{Item} $\ast$)
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+\mbox{[}abstract class\mbox{]} A container contains one or more score items.
+
+The variable items points to the items contained in a container. Because containers themself are items as well, a container can contain other containers to form a score hierarchy of containers and elements. However, a container must not contain itself. 
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{class_container_a58fe89314bc5e01d5f0a9b3b657c6b7d}{\index{Container@{Container}!Container@{Container}}
+\index{Container@{Container}!Container@{Container}}
+\subsubsection[{Container}]{\setlength{\rightskip}{0pt plus 5cm}Container\-::\-Container (
+\begin{DoxyParamCaption}
+\item[{{\bf Args}}]{as}
+\end{DoxyParamCaption}
+)}}\label{class_container_a58fe89314bc5e01d5f0a9b3b657c6b7d}
+\hyperlink{class_container}{Container} constructor.
+
+Arguments in Args as 
+\begin{DoxyParams}{Parameters}
+{\em vector$<$\-Item$>$} & items \\
+\hline
+{\em int} & offset\-Time \\
+\hline
+{\em int} & start\-Time \\
+\hline
+{\em int} & duration \\
+\hline
+{\em int} & end\-Time\\
+\hline
+\end{DoxyParams}
+In addition all Args of constructors of \hyperlink{class_container}{Container} superclasses are supported.
+
+T\-O\-D\-O\-: revise orig Strasheela doc\-: The optional argument 'items' expects a list of items which are contained in the container instance. (Additionally, items can be given by calling the method bilink\-Items.) A convenient shorthand notation for 'items' is the init method argument at record position 1. Example\-: init(My\-Items ...) 
+
+\subsection{Member Function Documentation}
+\hypertarget{class_container_a0de45ee721e564ecf487f2f042b9c554}{\index{Container@{Container}!add\-Item@{add\-Item}}
+\index{add\-Item@{add\-Item}!Container@{Container}}
+\subsubsection[{add\-Item}]{\setlength{\rightskip}{0pt plus 5cm}void Container\-::add\-Item (
+\begin{DoxyParamCaption}
+\item[{{\bf Item} $\ast$}]{}
+\end{DoxyParamCaption}
+)}}\label{class_container_a0de45ee721e564ecf487f2f042b9c554}
+\hypertarget{class_container_a52e94ab27524bea68a6a9dd1646fa316}{\index{Container@{Container}!get\-Items@{get\-Items}}
+\index{get\-Items@{get\-Items}!Container@{Container}}
+\subsubsection[{get\-Items}]{\setlength{\rightskip}{0pt plus 5cm}std\-::vector$<${\bf Item}$>$ Container\-::get\-Items (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)}}\label{class_container_a52e94ab27524bea68a6a9dd1646fa316}
+
+
+The documentation for this class was generated from the following files\-:\begin{DoxyCompactItemize}
+\item 
+Music\-Representation/\hyperlink{_score_core___container_8h}{Score\-Core\-\_\-\-Container.\-h}\item 
+Music\-Representation/\hyperlink{_score_core___container_8cpp}{Score\-Core\-\_\-\-Container.\-cpp}\end{DoxyCompactItemize}

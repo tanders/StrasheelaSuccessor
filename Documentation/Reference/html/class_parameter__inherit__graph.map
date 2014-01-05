@@ -1,0 +1,8 @@
+<map id="Parameter" name="Parameter">
+<area shape="rect" id="node3" href="$class_amplitude.html" title="Amplitude" alt="" coords="5,155,85,181"/>
+<area shape="rect" id="node4" href="$class_pitch.html" title="Pitch" alt="" coords="110,155,161,181"/>
+<area shape="rect" id="node5" href="$class_time_parameter.html" title="TimeParameter" alt="" coords="186,155,299,181"/>
+<area shape="rect" id="node2" href="$class_score_object.html" title="ScoreObject" alt="" coords="88,5,184,32"/>
+<area shape="rect" id="node6" href="$class_time_interval.html" title="TimeInterval" alt="" coords="137,229,233,256"/>
+<area shape="rect" id="node7" href="$class_time_point.html" title="TimePoint" alt="" coords="257,229,340,256"/>
+</map>

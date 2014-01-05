@@ -1,0 +1,85 @@
+\hypertarget{_music_utils_8cpp}{\section{Music\-Representation/\-Music\-Utils.cpp File Reference}
+\label{_music_utils_8cpp}\index{Music\-Representation/\-Music\-Utils.\-cpp@{Music\-Representation/\-Music\-Utils.\-cpp}}
+}
+{\ttfamily \#include $<$math.\-h$>$}\\*
+{\ttfamily \#include $<$string$>$}\\*
+{\ttfamily \#include $<$boost/algorithm/string/predicate.\-hpp$>$}\\*
+{\ttfamily \#include \char`\"{}Music\-Utils.\-h\char`\"{}}\\*
+Include dependency graph for Music\-Utils.\-cpp\-:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_music_utils_8cpp__incl}
+\end{center}
+\end{figure}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+double \hyperlink{_music_utils_8cpp_a4e90125986c69efb65d203f629861b2c}{keynum\-To\-Freq} (double keynum, int keys\-Per\-Octave)
+\item 
+double \hyperlink{_music_utils_8cpp_a0202a39d2949226eb55871bed5d0a4eb}{freq\-To\-Keynum} (double freq, int keys\-Per\-Octave)
+\item 
+bool \hyperlink{_music_utils_8cpp_ad4c78be5ecfdffb6fceb4007e2095a5f}{is\-E\-T} (std\-::string pitch\-Unit)
+\item 
+int \hyperlink{_music_utils_8cpp_a83b63f5637bb283b9511cc754a9b0a56}{get\-Pitches\-Per\-Octave} (std\-::string pitch\-Unit)
+\item 
+double \hyperlink{_music_utils_8cpp_a69504725fd34c3556d3e22869c17ffdc}{pitch\-To\-Midi} (double pitch, std\-::string pitch\-Unit)
+\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+const float \hyperlink{_music_utils_8cpp_a2b485959ae284e5a6d7caca4732262a1}{freq0} = 8.\-175798915643707
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+This file defines some utilities which are related to music or acoustics. 
+
+\subsection{Function Documentation}
+\hypertarget{_music_utils_8cpp_a0202a39d2949226eb55871bed5d0a4eb}{\index{Music\-Utils.\-cpp@{Music\-Utils.\-cpp}!freq\-To\-Keynum@{freq\-To\-Keynum}}
+\index{freq\-To\-Keynum@{freq\-To\-Keynum}!MusicUtils.cpp@{Music\-Utils.\-cpp}}
+\subsubsection[{freq\-To\-Keynum}]{\setlength{\rightskip}{0pt plus 5cm}double freq\-To\-Keynum (
+\begin{DoxyParamCaption}
+\item[{double}]{freq, }
+\item[{int}]{keys\-Per\-Octave}
+\end{DoxyParamCaption}
+)}}\label{_music_utils_8cpp_a0202a39d2949226eb55871bed5d0a4eb}
+Transforms freq into the corresponding keynum in an equally tempered scale with keys\-Per\-Octave keys per octave. The function is 'tuned' such that freq\-To\-Keynum(440, 12) returns 69. Note that he term keynum here is not limited to a M\-I\-D\-I keynumber but denotes a keynumber in any equidistant tuning. For instance, if keys\-Per\-Octave=1200 then keynum denotes cent values. \hypertarget{_music_utils_8cpp_a83b63f5637bb283b9511cc754a9b0a56}{\index{Music\-Utils.\-cpp@{Music\-Utils.\-cpp}!get\-Pitches\-Per\-Octave@{get\-Pitches\-Per\-Octave}}
+\index{get\-Pitches\-Per\-Octave@{get\-Pitches\-Per\-Octave}!MusicUtils.cpp@{Music\-Utils.\-cpp}}
+\subsubsection[{get\-Pitches\-Per\-Octave}]{\setlength{\rightskip}{0pt plus 5cm}int get\-Pitches\-Per\-Octave (
+\begin{DoxyParamCaption}
+\item[{std\-::string}]{pitch\-Unit}
+\end{DoxyParamCaption}
+)}}\label{_music_utils_8cpp_a83b63f5637bb283b9511cc754a9b0a56}
+Returns the pitches per octave expressed by an E\-T pitch unit, e.\-g., for et31 it returns 31. \hypertarget{_music_utils_8cpp_ad4c78be5ecfdffb6fceb4007e2095a5f}{\index{Music\-Utils.\-cpp@{Music\-Utils.\-cpp}!is\-E\-T@{is\-E\-T}}
+\index{is\-E\-T@{is\-E\-T}!MusicUtils.cpp@{Music\-Utils.\-cpp}}
+\subsubsection[{is\-E\-T}]{\setlength{\rightskip}{0pt plus 5cm}bool is\-E\-T (
+\begin{DoxyParamCaption}
+\item[{std\-::string}]{pitch\-Unit}
+\end{DoxyParamCaption}
+)}}\label{_music_utils_8cpp_ad4c78be5ecfdffb6fceb4007e2095a5f}
+Returns true if Pitch\-Unit is an atom which matches the pattern et$<$\-Digit$>$+ such as et31 or et72. \hypertarget{_music_utils_8cpp_a4e90125986c69efb65d203f629861b2c}{\index{Music\-Utils.\-cpp@{Music\-Utils.\-cpp}!keynum\-To\-Freq@{keynum\-To\-Freq}}
+\index{keynum\-To\-Freq@{keynum\-To\-Freq}!MusicUtils.cpp@{Music\-Utils.\-cpp}}
+\subsubsection[{keynum\-To\-Freq}]{\setlength{\rightskip}{0pt plus 5cm}double keynum\-To\-Freq (
+\begin{DoxyParamCaption}
+\item[{double}]{keynum, }
+\item[{int}]{keys\-Per\-Octave}
+\end{DoxyParamCaption}
+)}}\label{_music_utils_8cpp_a4e90125986c69efb65d203f629861b2c}
+Transforms a keynum into the corresponding frequency in an equally tempered scale with keys\-Per\-Octave keys per octave. The function is 'tuned' such that keynum\-To\-Freq(69 12) returns 440 Hz. Note that he term keynum here is not limited to a M\-I\-D\-I keynumber but denotes a keynumber in any equidistant tuning. For instance, if keys\-Per\-Octave=1200 then keynum denotes cent values. \hypertarget{_music_utils_8cpp_a69504725fd34c3556d3e22869c17ffdc}{\index{Music\-Utils.\-cpp@{Music\-Utils.\-cpp}!pitch\-To\-Midi@{pitch\-To\-Midi}}
+\index{pitch\-To\-Midi@{pitch\-To\-Midi}!MusicUtils.cpp@{Music\-Utils.\-cpp}}
+\subsubsection[{pitch\-To\-Midi}]{\setlength{\rightskip}{0pt plus 5cm}double pitch\-To\-Midi (
+\begin{DoxyParamCaption}
+\item[{double}]{pitch, }
+\item[{std\-::string}]{pitch\-Unit}
+\end{DoxyParamCaption}
+)}}\label{_music_utils_8cpp_a69504725fd34c3556d3e22869c17ffdc}
+Transforms pitch, measured in pitch\-Unit, into the corresponding \char`\"{}\-Midi float\char`\"{}
+
+A \char`\"{}\-Midi float\char`\"{} is a Midi number where positions after the decimal point express microtonal pitch deviations (e.\-g., 60.\-5 is middle C raised by a quarter tone). Possible pitch units are \char`\"{}midi\-: (i.\-e., 12-\/\-T\-E\-T); \char`\"{}midicent\char`\"{} or \char`\"{}midic\char`\"{} (pitch measured in cent); \char`\"{}frequency\char`\"{}, \char`\"{}freq\char`\"{}, \char`\"{}Hz\char`\"{} or \char`\"{}hz\char`\"{} (a frequency measured in Hz); \char`\"{}m\-Hz\char`\"{}; and arbitrary equal temperaments notated \char`\"{}et$<$division\-Of\-Octave$>$\char`\"{}, e.\-g., \char`\"{}et31\char`\"{}, \char`\"{}et72" etc. 
+
+\subsection{Variable Documentation}
+\hypertarget{_music_utils_8cpp_a2b485959ae284e5a6d7caca4732262a1}{\index{Music\-Utils.\-cpp@{Music\-Utils.\-cpp}!freq0@{freq0}}
+\index{freq0@{freq0}!MusicUtils.cpp@{Music\-Utils.\-cpp}}
+\subsubsection[{freq0}]{\setlength{\rightskip}{0pt plus 5cm}const float freq0 = 8.\-175798915643707}}\label{_music_utils_8cpp_a2b485959ae284e5a6d7caca4732262a1}
+freq at keynum 0, keynum 69 = 440 Hz 

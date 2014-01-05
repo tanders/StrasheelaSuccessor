@@ -1,0 +1,6 @@
+<map id="TimeMixin" name="TimeMixin">
+<area shape="rect" id="node2" href="$class_container.html" title="Container" alt="" coords="67,80,147,107"/>
+<area shape="rect" id="node5" href="$class_element.html" title="Element" alt="" coords="171,80,241,107"/>
+<area shape="rect" id="node3" href="$class_sequential.html" title="Sequential" alt="" coords="5,155,91,181"/>
+<area shape="rect" id="node4" href="$class_simultaneous.html" title="Simultaneous" alt="" coords="115,155,217,181"/>
+</map>

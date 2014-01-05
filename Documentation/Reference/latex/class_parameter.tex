@@ -1,0 +1,90 @@
+\hypertarget{class_parameter}{\section{Parameter Class Reference}
+\label{class_parameter}\index{Parameter@{Parameter}}
+}
+
+
+{\ttfamily \#include $<$Score\-Core\-\_\-\-Parameter.\-h$>$}
+
+
+
+Inheritance diagram for Parameter\-:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=331pt]{class_parameter__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Parameter\-:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=152pt]{class_parameter__coll__graph}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{class_parameter_a254b32e69ff3548d6e7fd04347fdd5cf}{Parameter} (\hyperlink{_score_core___score_object_8h_ab88aad89d974920ebfb0b0c9e46f61b4}{Args} as)
+\item 
+int \hyperlink{class_parameter_a4459b636c3993ba40664ce8a53dad2c1}{get\-Value} (void)
+\item 
+std\-::string \hyperlink{class_parameter_a0688af42890903c327ccf0b2373bff34}{get\-Unit} (void)
+\item 
+\hyperlink{class_item}{Item} $\ast$ \hyperlink{class_parameter_ac2009f29ab47b8b68ae8739b348ec2c2}{get\-Item} (void)
+\item 
+void \hyperlink{class_parameter_ae7ac31fdbb6079bd96b3ab1034d127e0}{set\-Item} (\hyperlink{class_item}{Item} $\ast$)
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+\mbox{[}semi abstract class\mbox{]} Musical parameters are the basic magnitudes in a music representation; examples are the parameters duration, amplitude and pitch, which add information to a note. A parameter is represented by an own class (i.\-e. not just as a instance variables of score items, as in most other composition environments) to allow the expression of additional information on the parameter besides the actual parameter value. For instance, a single numeric value for a pitch is ambitious, it could express a frequency, a M\-I\-D\-I-\/keynumber, M\-I\-D\-I-\/cents, a scale degree etc. Therefore, a parameter allows to specify the unit of measurement explicitly. The unit is mainly used when exporting the score. Also, due to bidirectional links between nested score objects, all information stored in a score can be accessed from a parameter object (using member function get\-Item). Users should ensure that parameters have corresponding units when constraining the relation between multiple parameters. For efficiency, the parameter value is limited to integer values and integer variable (planned\-: float variables). However, due to the flexibility of the unit, these values can be mapped to arbitrary other data (e.\-g. midicent integer to frequency float). 
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{class_parameter_a254b32e69ff3548d6e7fd04347fdd5cf}{\index{Parameter@{Parameter}!Parameter@{Parameter}}
+\index{Parameter@{Parameter}!Parameter@{Parameter}}
+\subsubsection[{Parameter}]{\setlength{\rightskip}{0pt plus 5cm}Parameter\-::\-Parameter (
+\begin{DoxyParamCaption}
+\item[{{\bf Args}}]{as}
+\end{DoxyParamCaption}
+)}}\label{class_parameter_a254b32e69ff3548d6e7fd04347fdd5cf}
+Args\-: int value\-: the parameter value string unit\-: parameter unit of measurement
+
+and Args of \hyperlink{class_score_object}{Score\-Object} 
+
+\subsection{Member Function Documentation}
+\hypertarget{class_parameter_ac2009f29ab47b8b68ae8739b348ec2c2}{\index{Parameter@{Parameter}!get\-Item@{get\-Item}}
+\index{get\-Item@{get\-Item}!Parameter@{Parameter}}
+\subsubsection[{get\-Item}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Item}$\ast$ Parameter\-::get\-Item (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)}}\label{class_parameter_ac2009f29ab47b8b68ae8739b348ec2c2}
+\hypertarget{class_parameter_a0688af42890903c327ccf0b2373bff34}{\index{Parameter@{Parameter}!get\-Unit@{get\-Unit}}
+\index{get\-Unit@{get\-Unit}!Parameter@{Parameter}}
+\subsubsection[{get\-Unit}]{\setlength{\rightskip}{0pt plus 5cm}std\-::string Parameter\-::get\-Unit (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)}}\label{class_parameter_a0688af42890903c327ccf0b2373bff34}
+\hypertarget{class_parameter_a4459b636c3993ba40664ce8a53dad2c1}{\index{Parameter@{Parameter}!get\-Value@{get\-Value}}
+\index{get\-Value@{get\-Value}!Parameter@{Parameter}}
+\subsubsection[{get\-Value}]{\setlength{\rightskip}{0pt plus 5cm}int Parameter\-::get\-Value (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)}}\label{class_parameter_a4459b636c3993ba40664ce8a53dad2c1}
+\hypertarget{class_parameter_ae7ac31fdbb6079bd96b3ab1034d127e0}{\index{Parameter@{Parameter}!set\-Item@{set\-Item}}
+\index{set\-Item@{set\-Item}!Parameter@{Parameter}}
+\subsubsection[{set\-Item}]{\setlength{\rightskip}{0pt plus 5cm}void Parameter\-::set\-Item (
+\begin{DoxyParamCaption}
+\item[{{\bf Item} $\ast$}]{i}
+\end{DoxyParamCaption}
+)}}\label{class_parameter_ae7ac31fdbb6079bd96b3ab1034d127e0}
+\%\% \mbox{[}aux method\mbox{]} Method must not be called by user (must only used by \hyperlink{class_item_af519b6c40476ed375fe36db754ae709e}{Item\-::bilink\-Parameters}). \% 
+
+The documentation for this class was generated from the following files\-:\begin{DoxyCompactItemize}
+\item 
+Music\-Representation/\hyperlink{_score_core___parameter_8h}{Score\-Core\-\_\-\-Parameter.\-h}\item 
+Music\-Representation/\hyperlink{_score_core___parameter_8cpp}{Score\-Core\-\_\-\-Parameter.\-cpp}\end{DoxyCompactItemize}

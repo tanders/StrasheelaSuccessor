@@ -20,35 +20,23 @@ using namespace std;
 int main(int argc, const char * argv[])
 {
     
-//    vector<string> args1 {"arg1", "x", "arg2", "y"};
-//    
-//    for_each(args1.begin(), args1.end(), [](string s){
-//        cout << s << "\n";
-//    });
-
-//    args args2 {{"arg1", "x"}, {"arg2", "y"}};
-//    for(auto x: args2)
-//        std::cout << x.first << ": " << x.second << '\n';
-
-//    for(auto x: args {{"arg1", 42}, {"arg2", "test"}})
-//        std::cout << x.first << ": " << x.second << '\n';
     
-//    ScoreObject(args {{"info", "bla"}});
-//    ScoreObject scoreObject = {args {{"info", "bla"}}}; // working
-//    ScoreObject scoreObject = {args {{"info", 42}}}; // throws as expected
-//    ScoreObject scoreObject = {args {{"info", "bla"}, {"buggy_arg", "value"}}}; // successfully throws exception
+//    ScoreObject(Args {{"info", "bla"}});
+//    ScoreObject scoreObject = {Args {{"info", "bla"}}}; // working
+//    ScoreObject scoreObject = {Args {{"info", 42}}}; // throws as expected
+//    ScoreObject scoreObject = {Args {{"info", "bla"}, {"buggy_arg", "value"}}}; // successfully throws exception
 //    scoreObject.addInfo("test 2");
     
     
-//    Parameter p = {args {{"info", "bla"}, {"value", 41}}};
-//    TimePoint p = {args {{"value", 0}, {"unit",  "beats"}}};
+//    Parameter p = {Args {{"info", "bla"}, {"value", 41}}};
+//    TimePoint p = {Args {{"value", 0}, {"unit",  "beats"}}};
 
 ////    cout << "hasThisInfo? " << scoreObject.hasThisInfo("bla") << "\n";
 //    cout << "hasThisInfo? " << p.hasThisInfo("bla") << "\n";
 //    cout << "value:  " << p.getValue() << "\n";
 //    cout << "unit :  " << p.getUnit() << "\n";
     
-//    Element e = {args {{"info", "bla"}, {"endTime", 10}, {"duration", 10}}};
+//    Element e = {Args {{"info", "bla"}, {"endTime", 10}, {"duration", 10}}};
 //    
 //    //    cout << "hasThisInfo? " << scoreObject.hasThisInfo("bla") << "\n";
 //    // TMP comment

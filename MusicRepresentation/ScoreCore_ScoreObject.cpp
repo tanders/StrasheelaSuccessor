@@ -25,7 +25,7 @@ ScoreObject::ScoreObject(Args as) {
     }
     // raise exception if there are any remaining Args
     for(auto x: as)
-        throw std::invalid_argument{"ScoreObject::ScoreObject(Args as)" + x.first};
+        throw std::invalid_argument{"ScoreObject constructor: " + x.first + " is not supported as arg in Args map"};
 };
 
 /*! Returns vectors of all info strings stored. */

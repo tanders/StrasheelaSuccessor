@@ -19,7 +19,7 @@
         std::cout << x.first << ": " << x.second << '\n';
 */
 
-SCENARIO( "type Args wraps named arguments of various types savely in a map", "[Args][ScoreCore]" ) {
+SCENARIO( "type Args wraps named arguments of various types savely in a map", "[ScoreCore][Args]" ) {
 
     GIVEN( "A test Args map" ) {
         

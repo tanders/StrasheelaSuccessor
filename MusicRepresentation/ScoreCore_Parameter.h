@@ -54,23 +54,22 @@ public:
 };
 
 
-
-class TimeParameter : public Parameter {
+class TemporalParameter : public Parameter {
 public:
-    TimeParameter(Args as) : Parameter{as} {};
+    TemporalParameter(Args as) : Parameter{as} {};
 
     float getValueInSeconds(void);
     float getValueInBeats(void);
 };
 
-class TimePoint : public TimeParameter {
+class TimePoint : public TemporalParameter {
 public:
-    TimePoint(Args as) : TimeParameter{as} {};
+    TimePoint(Args as) : TemporalParameter{as} {};
 };
 
-class TimeInterval : public TimeParameter {
+class TimeInterval : public TemporalParameter {
 public:
-    TimeInterval(Args as) : TimeParameter{as} {};
+    TimeInterval(Args as) : TemporalParameter{as} {};
 };
 
 

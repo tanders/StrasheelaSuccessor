@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>6BF2932F-AD6D-4D18-A57C-1C9FA8658F5F</string>
+	<key>IDESourceControlProjectName</key>
+	<string>StrasheelaSuccessor</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>7072B72D-E045-4516-A4BD-77AA0A7CE63E</key>
+		<string>ssh://github.com/tanders/StrasheelaSuccessor.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>StrasheelaSuccessor.xcodeproj/project.xcworkspace</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>7072B72D-E045-4516-A4BD-77AA0A7CE63E</key>
+		<string>../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>ssh://github.com/tanders/StrasheelaSuccessor.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>110</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>7072B72D-E045-4516-A4BD-77AA0A7CE63E</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>7072B72D-E045-4516-A4BD-77AA0A7CE63E</string>
+			<key>IDESourceControlWCCName</key>
+			<string>StrasheelaSuccessor</string>
+		</dict>
+	</array>
+</dict>
+</plist>

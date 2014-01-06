@@ -8,37 +8,14 @@
 
 
 /*
- *** TMP main file ***
+ *** DUMMY main file ***
  */
-
-#include "MusicUtils.h"
-#include "ScoreCore_Element.h"
-
 
 using namespace std;
 
 int main(int argc, const char * argv[])
 {
-    
-    
-//    Parameter p = {Args {{"info", "bla"}, {"value", 41}}};
-//    TimePoint p = {Args {{"value", 0}, {"unit",  "beats"}}};
-
-    //    cout << "value:  " << p.getValue() << "\n";
-    //    cout << "unit :  " << p.getUnit() << "\n";
-
-//    Element e = {Args {{"info", "bla"}, {"endTime", 10}, {"duration", 10}}};
-//    
-//    // TMP comment
-//    cout << "hasThisInfo? " << e.hasThisInfo("bla") << "\n";
-//    cout << "startTime:  " << e.getStartTime() << "\n";
-//    cout << "endTime:  " << e.getEndTime() << "\n";
-//    cout << "duration :  " << e.getDuration() << "\n";
-//    
-
-    
     cout << "This is a dummy main function\n";
-
     return 0;
 }
 

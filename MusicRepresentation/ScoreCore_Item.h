@@ -24,13 +24,13 @@ class Item : public ScoreObject {
     // No smart pointer, because this is only a back-reference to an object cared for elesewhere
     std::vector<Parameter*> parameters;
     Container* container; // backwards reference -- must be reference because otherwise they contain each other indefinitely
-    void bilinkContainer(Container*);
 
 public:
     Item(Args as);
     std::vector<Parameter*> getParameters(void);
     Container* getContainer(void);
-
+    void setContainer(Container*);
+    
     void bilinkParameters(std::vector<Parameter*> ps);
     
     // TODO: many missing Item functions

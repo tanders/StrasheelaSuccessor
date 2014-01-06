@@ -18,20 +18,15 @@ std::vector<Parameter*> Item::getParameters(void) { return parameters; }
 
 Container* Item::getContainer(void) { return container; }
 
-/*! [aux method] Parameters and Item *this are bidirectional linked. Method must not be called by user (only by designer of class with additional parameters).
+void Item::setContainer(Container* c) { container = c; }
+
+/*! [aux method] Parameters and Item *this are bidirectional linked. Function must not be called by user (only by designer of class with additional parameters).
  */
 void Item::bilinkParameters(std::vector<Parameter*> ps) {
     for (auto p : ps) {
         parameters.push_back(p);
         p->setItem(this);
     }
-}
-
-/*! [aux method] Container and Item *this are bidirectional linked. Method must not be called by user (called only once during initialisation).
- */
-void Item::bilinkContainer(Container* c) {
-    container = c;
-    c->addItem(this);
 }
 
 

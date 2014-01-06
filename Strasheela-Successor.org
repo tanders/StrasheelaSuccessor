@@ -347,7 +347,7 @@ Has a vibrant and friendly user-community.
      http://en.wikipedia.org/wiki/List_of_unit_testing_frameworks#C.2B.2B
       
 
-**** CATCH
+**** Chosen: CATCH
 
      http://www.levelofindirection.com/journal/2013/6/28/catch-10.html
 
@@ -379,7 +379,8 @@ Has a vibrant and friendly user-community.
 
       http://blog.codeship.io/2013/04/22/from-tdd-to-bdd.html
 
-**** !!!? googletest
+
+**** !!!? googletest						    :ARCHIVE:
 
      *Current versions of googletest (1.7) and Xcode (5-5.02) not working together?*
 
@@ -427,7 +428,7 @@ Has a vibrant and friendly user-community.
       https://github.com/mattstevens/xcode-googletest
 
 
-**** !!? CxxTest
+**** !!? CxxTest						    :ARCHIVE:
 
      *Looks like I may prefer using googletest -- once it works with Xcode again*
 
@@ -448,7 +449,7 @@ Has a vibrant and friendly user-community.
       https://emou.wordpress.com/2009/10/02/unit-testing-in-c-using-cxxtest/
      
 
-**** !? UnitTest++
+**** !? UnitTest++						    :ARCHIVE:
 
      http://unittest-cpp.sourceforge.net/
 
@@ -456,7 +457,7 @@ Has a vibrant and friendly user-community.
      http://unittest-cpp.sourceforge.net/UnitTest++.html
 
 
-**** !? Boost test library
+**** !? Boost test library					    :ARCHIVE:
 
      http://www.boost.org/doc/libs/1_55_0/libs/test/doc/html/index.html
 

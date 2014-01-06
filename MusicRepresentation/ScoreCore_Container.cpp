@@ -28,10 +28,11 @@ Container::Container(Args as) :
 // Variables parameters and container are not supported as Args anyway, so no reduction necessary when forwarding to TimeMixin
 Item{reduceArgsBy(as, std::vector<std::string>{"startTime", "offsetTime", "endTime", "duration"})},
 TimeMixin{reduceArgsBy(as, std::vector<std::string>{"info"})}
-#warning TMP comment: initialise items
-//items{"items", extractVectorOfScoreObjectsArg(as, "items")}
 #warning !! initialise vector items -- bilinkItems
-{ this->bilinkParameters(std::vector<Parameter*> {
+{
+    // problem: extractVectorOfScoreObjectsArg only works with vector<ScoreObject>, not vector<Item> -- need template variant...
+//    this->bilinkItems(extractVectorOfScoreObjectsArg(as, "items"));
+    this->bilinkParameters(std::vector<Parameter*> {
     this->getOffsetTimeParameter(),
     this->getStartTimeParameter(),
     this->getDurationParameter(),
@@ -47,3 +48,14 @@ std::vector<Item> Container::getItems(void) { return items; }
 void Container::addItem(Item* x) {
     items.push_back(*x);
 }
+
+/*! [aux method] Container (*this) and Items are bidirectional linked. Function must not be called by user (called only once during initialisation).
+ */
+// TODO: make function private.
+void Container::bilinkItems(std::vector<Item> xs) {
+    for (auto x : xs) {
+        items.push_back(x);
+        x.setContainer(this);
+    }
+}
+

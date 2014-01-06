@@ -26,6 +26,8 @@ public:
     Container(Args as);
     std::vector<Item> getItems(void);
     void addItem(Item*);
+    
+    void bilinkItems(std::vector<Item> xs);
 
 };
 

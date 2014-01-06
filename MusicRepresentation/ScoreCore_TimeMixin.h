@@ -35,10 +35,14 @@ public:
     TimeInterval* getDurationParameter(void) {return &duration;};
     TimePoint* getEndTimeParameter(void) {return &endTime;};
     
+    std::string getTimeUnit(void);
+
     
 #warning TODO: many functions still missing, see Strasheela
     
-     
+    
+
+    
 };
 
 

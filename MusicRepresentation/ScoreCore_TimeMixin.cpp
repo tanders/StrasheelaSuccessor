@@ -44,3 +44,11 @@ endTime{TimePoint {Args
         {"unit",  extractStringArg(as, "timeUnit", "beats")}}}}
 {}
 
+
+#warning Avoid unification. Instead, somewhere (e.g., at the top-level object of a score) store a single time unit that is accessed by all temporal params in the score when accessing the time unit
+///*! Returns the unit for measuring time. As all the units of all temporal parameters are unified, any parameters (and items) unit can be accessed.
+// */
+//std::string TimeMixin::getTimeUnit(void) {
+//    return this->getStartTimeParameter()->getUnit();
+//}
+

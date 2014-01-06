@@ -7,11 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E50D703B1879FAA100E75BE7 /* ScoreCore_TypeArgs_test.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E50D703A1879FAA100E75BE7 /* ScoreCore_TypeArgs_test.cpp */; };
 		E524F63E18742EF800223A1E /* MusicUtils.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E524F63C18742EF800223A1E /* MusicUtils.cpp */; };
 		E54FB22A1877478C0053A5E9 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E54FB2291877478C0053A5E9 /* main.cpp */; };
 		E54FB22C1877478C0053A5E9 /* UnitTesting.1 in CopyFiles */ = {isa = PBXBuildFile; fileRef = E54FB22B1877478C0053A5E9 /* UnitTesting.1 */; };
 		E54FB231187747EC0053A5E9 /* MusicUtils-test.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E54FB230187747EC0053A5E9 /* MusicUtils-test.cpp */; };
-		E54FB232187748C00053A5E9 /* UnitTesting.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E54FB220187722850053A5E9 /* UnitTesting.cpp */; };
+		E54FB232187748C00053A5E9 /* ScoreCore_ScoreObject_test.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E54FB220187722850053A5E9 /* ScoreCore_ScoreObject_test.cpp */; };
 		E54FB23318774A960053A5E9 /* MusicUtils.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E524F63C18742EF800223A1E /* MusicUtils.cpp */; };
 		E54FB23418774AA60053A5E9 /* ScoreCore.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E5E0366E186B6BE8007A2C63 /* ScoreCore.cpp */; };
 		E54FB23518774AA90053A5E9 /* ScoreCore_Container.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E5E03686186CB6D7007A2C63 /* ScoreCore_Container.cpp */; };
@@ -59,9 +60,10 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		E50D703A1879FAA100E75BE7 /* ScoreCore_TypeArgs_test.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ScoreCore_TypeArgs_test.cpp; sourceTree = "<group>"; };
 		E524F63C18742EF800223A1E /* MusicUtils.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MusicUtils.cpp; sourceTree = "<group>"; };
 		E524F63D18742EF800223A1E /* MusicUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MusicUtils.h; sourceTree = "<group>"; };
-		E54FB220187722850053A5E9 /* UnitTesting.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = UnitTesting.cpp; sourceTree = "<group>"; };
+		E54FB220187722850053A5E9 /* ScoreCore_ScoreObject_test.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ScoreCore_ScoreObject_test.cpp; sourceTree = "<group>"; };
 		E54FB2271877478C0053A5E9 /* UnitTesting */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = UnitTesting; sourceTree = BUILT_PRODUCTS_DIR; };
 		E54FB2291877478C0053A5E9 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		E54FB22B1877478C0053A5E9 /* UnitTesting.1 */ = {isa = PBXFileReference; lastKnownFileType = text.man; path = UnitTesting.1; sourceTree = "<group>"; };
@@ -112,10 +114,11 @@
 			isa = PBXGroup;
 			children = (
 				E54FB23D18783E2F0053A5E9 /* catch.hpp */,
-				E54FB220187722850053A5E9 /* UnitTesting.cpp */,
+				E54FB220187722850053A5E9 /* ScoreCore_ScoreObject_test.cpp */,
 				E54FB230187747EC0053A5E9 /* MusicUtils-test.cpp */,
 				E54FB2291877478C0053A5E9 /* main.cpp */,
 				E54FB22B1877478C0053A5E9 /* UnitTesting.1 */,
+				E50D703A1879FAA100E75BE7 /* ScoreCore_TypeArgs_test.cpp */,
 			);
 			path = UnitTesting;
 			sourceTree = "<group>";
@@ -236,13 +239,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E50D703B1879FAA100E75BE7 /* ScoreCore_TypeArgs_test.cpp in Sources */,
 				E54FB23618774AAC0053A5E9 /* ScoreCore_Element.cpp in Sources */,
 				E54FB23C18774AC20053A5E9 /* ScoreMapping.cpp in Sources */,
 				E54FB22A1877478C0053A5E9 /* main.cpp in Sources */,
 				E54FB23B18774ABD0053A5E9 /* ScoreCore_TypeArgs.cpp in Sources */,
 				E54FB23418774AA60053A5E9 /* ScoreCore.cpp in Sources */,
 				E54FB23318774A960053A5E9 /* MusicUtils.cpp in Sources */,
-				E54FB232187748C00053A5E9 /* UnitTesting.cpp in Sources */,
+				E54FB232187748C00053A5E9 /* ScoreCore_ScoreObject_test.cpp in Sources */,
 				E54FB231187747EC0053A5E9 /* MusicUtils-test.cpp in Sources */,
 				E54FB23718774AAF0053A5E9 /* ScoreCore_Item.cpp in Sources */,
 				E54FB23A18774ABA0053A5E9 /* ScoreCore_TimeMixin.cpp in Sources */,
@@ -410,6 +414,7 @@
 				E54FB22F1877478C0053A5E9 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		E591404E1865ED7700F29EF2 /* Build configuration list for PBXProject "StrasheelaSuccessor" */ = {
 			isa = XCConfigurationList;

@@ -23,6 +23,7 @@
 		E54FB23A18774ABA0053A5E9 /* ScoreCore_TimeMixin.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E5E0367A186CB5A8007A2C63 /* ScoreCore_TimeMixin.cpp */; };
 		E54FB23B18774ABD0053A5E9 /* ScoreCore_TypeArgs.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E5E03689186CB72D007A2C63 /* ScoreCore_TypeArgs.cpp */; };
 		E54FB23C18774AC20053A5E9 /* ScoreMapping.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E5E03671186B8F3A007A2C63 /* ScoreMapping.cpp */; };
+		E58C02C1187B46BC00E674E4 /* ScoreCore_Element_test.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E58C02C0187B46BC00E674E4 /* ScoreCore_Element_test.cpp */; };
 		E59140571865ED7700F29EF2 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E59140561865ED7700F29EF2 /* main.cpp */; };
 		E59140591865ED7700F29EF2 /* MusicRepresentation.1 in CopyFiles */ = {isa = PBXBuildFile; fileRef = E59140581865ED7700F29EF2 /* MusicRepresentation.1 */; };
 		E59D4935186E1E6600F3E890 /* ScoreCore_Element.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E59D4933186E1E6600F3E890 /* ScoreCore_Element.cpp */; };
@@ -69,6 +70,7 @@
 		E54FB22B1877478C0053A5E9 /* UnitTesting.1 */ = {isa = PBXFileReference; lastKnownFileType = text.man; path = UnitTesting.1; sourceTree = "<group>"; };
 		E54FB230187747EC0053A5E9 /* MusicUtils-test.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = "MusicUtils-test.cpp"; sourceTree = "<group>"; };
 		E54FB23D18783E2F0053A5E9 /* catch.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = catch.hpp; sourceTree = "<group>"; };
+		E58C02C0187B46BC00E674E4 /* ScoreCore_Element_test.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ScoreCore_Element_test.cpp; sourceTree = "<group>"; };
 		E59140531865ED7700F29EF2 /* StrasheelaSuccessor */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = StrasheelaSuccessor; sourceTree = BUILT_PRODUCTS_DIR; };
 		E59140561865ED7700F29EF2 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		E59140581865ED7700F29EF2 /* MusicRepresentation.1 */ = {isa = PBXFileReference; lastKnownFileType = text.man; path = MusicRepresentation.1; sourceTree = "<group>"; };
@@ -85,7 +87,7 @@
 		E5E0367A186CB5A8007A2C63 /* ScoreCore_TimeMixin.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ScoreCore_TimeMixin.cpp; sourceTree = "<group>"; };
 		E5E0367B186CB5A8007A2C63 /* ScoreCore_TimeMixin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScoreCore_TimeMixin.h; sourceTree = "<group>"; };
 		E5E0367D186CB5EB007A2C63 /* ScoreCore_Parameter.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ScoreCore_Parameter.cpp; sourceTree = "<group>"; };
-		E5E0367E186CB5EB007A2C63 /* ScoreCore_Parameter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScoreCore_Parameter.h; sourceTree = "<group>"; };
+		E5E0367E186CB5EB007A2C63 /* ScoreCore_Parameter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = ScoreCore_Parameter.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		E5E03686186CB6D7007A2C63 /* ScoreCore_Container.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ScoreCore_Container.cpp; sourceTree = "<group>"; };
 		E5E03687186CB6D7007A2C63 /* ScoreCore_Container.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScoreCore_Container.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.cpp; };
 		E5E03689186CB72D007A2C63 /* ScoreCore_TypeArgs.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ScoreCore_TypeArgs.cpp; sourceTree = "<group>"; };
@@ -115,6 +117,7 @@
 			children = (
 				E54FB23D18783E2F0053A5E9 /* catch.hpp */,
 				E54FB220187722850053A5E9 /* ScoreCore_ScoreObject_test.cpp */,
+				E58C02C0187B46BC00E674E4 /* ScoreCore_Element_test.cpp */,
 				E54FB230187747EC0053A5E9 /* MusicUtils-test.cpp */,
 				E54FB2291877478C0053A5E9 /* main.cpp */,
 				E54FB22B1877478C0053A5E9 /* UnitTesting.1 */,
@@ -248,6 +251,7 @@
 				E54FB23318774A960053A5E9 /* MusicUtils.cpp in Sources */,
 				E54FB232187748C00053A5E9 /* ScoreCore_ScoreObject_test.cpp in Sources */,
 				E54FB231187747EC0053A5E9 /* MusicUtils-test.cpp in Sources */,
+				E58C02C1187B46BC00E674E4 /* ScoreCore_Element_test.cpp in Sources */,
 				E54FB23718774AAF0053A5E9 /* ScoreCore_Item.cpp in Sources */,
 				E54FB23A18774ABA0053A5E9 /* ScoreCore_TimeMixin.cpp in Sources */,
 				E54FB23518774AA90053A5E9 /* ScoreCore_Container.cpp in Sources */,
